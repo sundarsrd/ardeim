@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Google Fonts Selection - Sundar -->
+		<link href="https://fonts.googleapis.com/css?family=Cookie|Josefin+Slab:600|Lobster|Shadows+Into+Light+Two" rel="stylesheet">
+		
+		<!-- Emoji Font / Css - Sundar (https://afeld.github.io/emoji-css/) -->
+		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+		<!-- stripthis! -->
+		<link rel="stylesheet" type="text/css" href="dep/st/font/stylesheet.css" />
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<!-- 
+			Style overrides!!!
+			Why?!: We have to override the box-shadow around images, to prevent borders in the stripthis images (as part of comicstrip integration)! 
+					https://stackoverflow.com/questions/23082660/how-to-style-images-in-reveal-js 
+			// Don't Change ".reveal section img"
+		-->
+		<style>
+			.reveal section img {
+				 background:none; border:none; box-shadow:none; }
+			.reveal section h3 { 
+				font-family: "Lobster", cursive; }	
+			.reveal section h6 {
+				font-family: 'Shadows Into Light Two', cursive;
+				font-size: '.05em';
+			}
+			img {
+				max-width: 100%;
+				height: auto;
+				width: auto\9; 			
+			}
+		</style>
+		<div class="reveal">
+			<div class="slides">
+				<!-- 001 Welcome -->
+				<section data-background-image="images/devils-bridge2.jpg">
+					<h3>Design, Architecture &amp; Coding</h3>
+					<h6>(bridge to SDE1)</h6>
+				</section>
+				<!-- 002. Scope & Theme -->
+				<section>
+					<section>
+						<h6>
+							<small>Build a PDP Web UI (and Mobile app.), powered by public facing Product, Price Services</small>
+						</h6>
+						<small>- wherein the stock and prices keep changing - updated by partners, internal systems in real time</small>
+						<small>- product &amp; price data is recd. from partners via batch files at specific intervels</small>
+						<small>- every PDP visit needs to be sent to data warehouse</small>
+					</section>
+					<!-- 002.a. problem statement slide -->
+					<section>
+						<table>
+							<thead>
+								<tr class="fragment">
+									<th>Criteria</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="fragment">
+									<td><small>Data Volumes</small></td>
+									<td><small>5 Million Products &amp; Growing</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Response Times</small></td>
+									<td><small>< 200 ms / req. (Services), < 2 Seconds per page</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Concurrent Users</small></td>
+									<td><small>> 1500 users / connections (Services), > 1000 users / connections (page views)</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Consumers</small></td>
+									<td><small>&lt;20 (Internal, External applications &amp; services); ~500k Mobile app. users</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Throughput</small></td>
+									<td><small>> 2000 tps / sec.</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Available over business hours</small></td>
+									<td><small>5AM - 12AM</small></td>
+								</tr>
+							</tbody>
+						</table>						
+					</section>					
+					<!-- 002.b. nfr slide -->
+					<section>
+						<table>
+							<thead>
+								<tr class="fragment">
+									<th>NFRs</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="fragment">
+									<td><small>Performance</small></td>									
+								</tr>
+								<tr class="fragment">
+									<td><small>Scalability</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>High Availability</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Reliability & Quality</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Testability</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>Maintainability</small></td>
+								</tr>
+								<tr class="fragment">
+									<td><small>....</small></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+				<!-- 003. Architecture -->
+				<section>
+					<!-- 003.a Where do we start -->
+					<section>
+						Architecture multiple types based on the theme 
+					</section>
+					<!-- 003.b Layered - Overall Arch. -->
+					<section>
+						Layered - Overall Arch.
+					</section>
+					<!-- 003.c Services, Hexagonal, CQRS - for App Layer -->
+					<section>
+						Services, Hexagonal, CQRS - for App Layer
+					</section>
+					<!-- 003.d Event Driven - for Integration (events consumption & generation) -->
+					<section>
+						Event Driven - for Integration (events consumption & generation)
+					</section>
+					<!-- 003.e Batches - Messaging, EAI -->
+					<section>
+						Batches - Messaging, EAI
+					</section>
+				</section>
+				<!-- 004. Technologies -->
+				<section>
+					<!-- 004.a Technology selection for Web layer -->
+					<section>
+					</section>
+					<!-- 004.b Technology selection for Aeb layer -->
+					<section>
+					</section>
+					<!-- 004.c Technology selection for DB layer -->
+					<section>
+					</section>
+					<!-- 004.d CAP Theorem -->
+					<section>
+					</section>
+					<!-- 004.e Technology selection for Other layers -->
+					<section>
+					</section>
+				</section>
+				<!-- initial slides -->
+				<section>
+					<!-- 002.c. design flow & implementation slide -->
+					<section>
+						<table>
+							<tr>
+								<td>
+									<span>
+										<!-- technique to overlay images and animate them, within a slide using fragments-->
+										<p class="fragment fade-in current-visible" style="position:absolute; left:210px; top:100px;">
+											<textarea class="comicbrowser-render">
+												"Choose the Architecture" black 
+												a new passion panel
+												narrator says "Layered"
+											</textarea>
+										</p>
+										<span>
+											<p class="fragment fade-up current-visible" style="position:absolute; left:210px; top:100px;">
+												<textarea class="comicbrowser-render">
+													" "
+													a new passion panel
+													narrator says "Layered"
+												</textarea>
+											</p>
+											<span>
+												<p class="fragment slide current-visible" style="position:absolute; left:210px; top:100px;">
+													<textarea class="comicbrowser-render">
+														" "
+														a new hypnotic panel
+														narrator says "Hexagonal"
+													</textarea>
+												</p>
+												<span>
+												<p class="fragment convex current-visible" style="position:absolute; left:210px; top:100px;">
+													<textarea class="comicbrowser-render">
+														" "
+														a new confusion panel
+														narrator says "CQRS"
+													</textarea>
+												</p>
+												</span>
+											</span>
+										</span>
+									</span>
+									<span>
+									<p class="fragment concave current-visible" style="position:absolute; left:210px; top:100px;">
+										<textarea class="comicbrowser-render">
+											" "
+											a new despair panel
+											narrator says "N-Tier"
+										</textarea>
+									</p>
+									</span>
+									<span>
+									<p class="fragment fate-out current-visible">
+										<textarea class="comicbrowser-render">
+											" "
+											a new lovely panel
+											narrator says "Event Driven / Event Sourcing"
+										</textarea>
+									</p>
+									</span>
+								</td>
+							</tr>
+							<tr> 
+								<td>
+									<small>
+										What does each architecture type mean?<br>
+										When should i use CQRS?<br>
+										How do i choose between N-Tier & Hexagonal architecture styles?
+									</small>
+								</td>
+								<td data-markdown>
+									<script type="text/template">
+										<!-- .element: class="fragment" style="font-size: 0.55em" -->
+										* [Layered Architectures](http://www.softwarearchitectures.com/qa.html)
+										* [Hexagonal Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [CQRS](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [N-Tier](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [Event Driven / Event Sourcing](https://en.wikipedia.org/wiki/Multitier_architecture)
+									</script>
+								</td>
+							</tr>
+						</table>
+					</section>	
+					<section data-background-image="https://martinfowler.com/bliki/images/cqrs/single-model.png">
+						<a href="https://martinfowler.com/bliki/CQRS.html"></a>
+					</section>
+					<section data-background-iframe="http://www.softwarearchitectures.com/qa.html" data-background-size="content">
+					</section>
+					<section data-background-iframe="http://alistair.cockburn.us/Hexagonal+architecture">
+					</section>
+					<section data-background-iframe="https://martinfowler.com/bliki/CQRS.html">
+					</section>
+					<section data-background-iframe="https://en.wikipedia.org/wiki/Multitier_architecture">
+					</section>
+					<section data-background-iframe="https://en.wikipedia.org/wiki/Event-driven_architecture">
+					</section>
+					<!-- 002.c. design flow & implementation slide -->
+					<section>
+						<table>
+							<tr>
+								<td>
+									<p class="fragment">
+										<textarea class="comicbrowser-render">
+											"Choose the Architecture" black 
+											a new passion panel
+											narrator says "Layered"
+											a new hypnotic panel
+											narrator says "Hexagonal"
+											a new confusion panel
+											narrator says "CQRS"
+											a new despair panel
+											narrator says "N-Tier"
+											a new lovely panel
+											narrator says "Event Driven / Event Sourcing"
+										</textarea>
+									</p>
+								</td>
+							</tr>
+							<tr > 
+								<td>
+									<small>
+										What does each architecture type mean?<br>
+										When should i use CQRS?<br>
+										How do i choose between N-Tier & Hexagonal architecture styles?
+									</small>
+								</td>
+								<td data-markdown>
+									<script type="text/template">
+										<!-- .element: class="fragment" style="font-size: 0.55em" -->
+										* [Layered Architectures](http://www.softwarearchitectures.com/qa.html)
+										* [Hexagonal Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [CQRS](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [N-Tier](https://en.wikipedia.org/wiki/Multitier_architecture)
+										* [Event Driven / Event Sourcing](https://en.wikipedia.org/wiki/Multitier_architecture)
+									</script>
+								</td>
+							</tr>
+						</table>
+					</section>						
+					<!-- 002.d. design flow & implementation slide -->
+					<section> <!-- data-background-image="https://upload.wikimedia.org/wikipedia/commons/5/51/Overview_of_a_three-tier_application_vectorVersion.svg" data-background-size="cover" -->
+						<table>
+							<tr>
+								<td colspan="2">
+									<textarea class="comicbrowser-render">
+										"Let's go with N-Tier Architecture" black
+										a new dark hypnotic panel
+										kesiev using pc looking up says "ummm, where do i start?"
+										a new dark office panel
+										kesiev using pc looking down says "How do i split the layers??"
+										lara replies "how about Web, App, DB Layers?"
+										a new dark office panel
+										kesiev using pc looking right glasses with mug says loudly "yeah, why not!"
+										lara looking left thumb up
+									</textarea>
+								</td>
+							</tr>
+							<tr > 
+								<td>
+									<small>
+										Why Layering?<br>
+										What's it's importance?
+									</small>
+								</td>
+								<td data-markdown>
+									<script type="text/template">
+										<!-- .element: class="fragment" style="font-size: 0.55em" -->
+										* [Software Architectures](http://www.softwarearchitectures.com/qa.html)
+										* [Multitier Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+									</script>
+								</td>
+							</tr>
+						</table>
+					</section>						
+				</section>
+				<!-- 003. Q&A slide -->
+				<section># Q &amp; A</section>
+				<!-- 004. Thank you slide -->
+				<section>
+					<textarea class="comicbrowser-render">
+						" "
+						new hypnotic panel
+						kesiev very large vanishing says loudly to self "thank YOU folks!" 
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<!-- jquery & other pre-reqisites ! -->
+		<script src="lib/js/head.min.js"></script>
+		<script src="lib/js/jquery.js"></script> 
+
+		<!-- reveal! -->
+		<script src="js/reveal.js"></script>
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				],
+				progress : true,
+				autoslide : 5000,
+				autoslideStoppable : true
+			});
+		</script>
+		<!-- stripthis! -->
+		<script type="text/javascript" src="dep/st/libs/comicbrowser.js"></script>
+		<script type="text/javascript" src="dep/st/libs/comicgenerator.js"></script>
+		<script type="text/javascript" src="dep/st/libs/stencils.js"></script>
+		<script type="text/javascript" src="dep/st/libs/stencils-kesiev.js"></script>
+		<script type="text/javascript" src="dep/st/libs/stencils-sandbox.js"></script>		
+		<script type="text/javascript" src="dep/st/libs/stencils-cw.js"></script>
+		<script type="text/javascript" src="dep/st/libs/stencils-lw.js"></script>		
+		<script>
+			function onComicgeneratorConfigure() {
+				// You can change the comicbrowser and comicgenerator configuration here before showing your comic, so you
+				// can set the series ID and, eventually, the "stripthis" engine root path, like this.
+				//
+				// comicbrowser._settings.server.url="path/to/server.php?seriesid=<your comic id>";
+				comicgenerator._settings.placeholders.server="dep/st/";
+			}
+		</script>
+	</body>
+</html>

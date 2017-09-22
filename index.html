@@ -1,414 +1,1350 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/league.css">
 
-		<!-- Google Fonts Selection - Sundar -->
-		<link href="https://fonts.googleapis.com/css?family=Cookie|Josefin+Slab:600|Lobster|Shadows+Into+Light+Two" rel="stylesheet">
-		
-		<!-- Emoji Font / Css - Sundar (https://afeld.github.io/emoji-css/) -->
-		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- stripthis! -->
-		<link rel="stylesheet" type="text/css" href="dep/st/font/stylesheet.css" />
+	<!-- Google Fonts Selection - Sundar -->
+	<link href="https://fonts.googleapis.com/css?family=Cookie|Josefin+Slab:600|Lobster|Shadows+Into+Light+Two" rel="stylesheet">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<!-- 
-			Style overrides!!!
-			Why?!: We have to override the box-shadow around images, to prevent borders in the stripthis images (as part of comicstrip integration)! 
-					https://stackoverflow.com/questions/23082660/how-to-style-images-in-reveal-js 
-			// Don't Change ".reveal section img"
-		-->
-		<style>
-			.reveal section img {
-				 background:none; border:none; box-shadow:none; }
-			.reveal section h3 { 
-				font-family: "Lobster", cursive; }	
-			.reveal section h6 {
-				font-family: 'Shadows Into Light Two', cursive;
-				font-size: '.05em';
-			}
-			img {
-				max-width: 100%;
-				height: auto;
-				width: auto\9; 			
-			}
-		</style>
-		<div class="reveal">
-			<div class="slides">
-				<!-- 001 Welcome -->
-				<section data-background-image="images/devils-bridge2.jpg">
-					<h3>Design, Architecture &amp; Coding</h3>
-					<h6>(bridge to SDE1)</h6>
-				</section>
-				<!-- 002. Scope & Theme -->
+	<!-- Emoji Font / Css - Sundar (https://afeld.github.io/emoji-css/) -->
+	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+	<!-- stripthis! -->
+	<link rel="stylesheet" type="text/css" href="dep/st/font/stylesheet.css" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+<body>
+	<!-- 
+		Style overrides!!!
+		Why?!: We have to override the box-shadow around images, to prevent borders in the stripthis images (as part of comicstrip integration)! 
+				https://stackoverflow.com/questions/23082660/how-to-style-images-in-reveal-js 
+		// Don't Change ".reveal section img"
+	-->
+	<style>
+		.reveal section img {
+			background: none;
+			border: none;
+			box-shadow: none;
+		}
+
+		.reveal section h3 {
+			font-family: "Lobster", cursive;
+		}
+
+		.reveal section h6 {
+			font-family: 'Shadows Into Light Two', cursive;
+			font-size: '.02em';
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			width: auto;
+		}
+	</style>
+	<div class="reveal">
+		<div class="slides">
+			<!-- 001 Welcome -->
+			<section>
+				<h2>Ardeim</h2>
+				<h3>(Ar)chitecture, (De)sign &amp; (Im)plementation</h3>
+				<br>
+				<h6><small>Copyright:<br>SivaramaSundar, Karthik Kalkur</small></h6>
+				<h6><small>Thanks to:<br>Rashmi</small></h6>
+				<h6><small>Credits:<br>reveal.js, stripthis (kesiev)</small></h6>
+			</section>
+			<!-- 002. Context -->
+			<section>
+				<h4>Context</h4>
 				<section>
-					<section>
-						<h6>
-							<small>Build a PDP Web UI (and Mobile app.), powered by public facing Product, Price Services</small>
-						</h6>
-						<small>- wherein the stock and prices keep changing - updated by partners, internal systems in real time</small>
-						<small>- product &amp; price data is recd. from partners via batch files at specific intervels</small>
-						<small>- every PDP visit needs to be sent to data warehouse</small>
-					</section>
-					<!-- 002.a. problem statement slide -->
-					<section>
-						<table>
-							<thead>
-								<tr class="fragment">
-									<th>Criteria</th>
-									<th>&nbsp;</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="fragment">
-									<td><small>Data Volumes</small></td>
-									<td><small>5 Million Products &amp; Growing</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Response Times</small></td>
-									<td><small>< 200 ms / req. (Services), < 2 Seconds per page</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Concurrent Users</small></td>
-									<td><small>> 1500 users / connections (Services), > 1000 users / connections (page views)</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Consumers</small></td>
-									<td><small>&lt;20 (Internal, External applications &amp; services); ~500k Mobile app. users</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Throughput</small></td>
-									<td><small>> 2000 tps / sec.</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Available over business hours</small></td>
-									<td><small>5AM - 12AM</small></td>
-								</tr>
-							</tbody>
-						</table>						
-					</section>					
-					<!-- 002.b. nfr slide -->
-					<section>
-						<table>
-							<thead>
-								<tr class="fragment">
-									<th>NFRs</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="fragment">
-									<td><small>Performance</small></td>									
-								</tr>
-								<tr class="fragment">
-									<td><small>Scalability</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>High Availability</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Reliability & Quality</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Testability</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>Maintainability</small></td>
-								</tr>
-								<tr class="fragment">
-									<td><small>....</small></td>
-								</tr>
-							</tbody>
-						</table>
-					</section>
+					<textarea class="comicbrowser-render">
+							"The Team!" black 
+
+							a new office panel
+							bianca with blocknotes looking right replies to self "*Product Manager"
+							kesiev with glasses using mac looking left replies to self "*Jr. Engg."
+							lara  with mug looking left says to self "*Sr. Engg."
+							peter using tablet looking left replies to self "*Divine Voice!"
+							anna  using phone looking left says to self "*Dev. Manager"
+					</textarea>
 				</section>
-				<!-- 003. Architecture -->
 				<section>
-					<!-- 003.a Where do we start -->
-					<section>
-						Architecture multiple types based on the theme 
-					</section>
-					<!-- 003.b Layered - Overall Arch. -->
-					<section>
-						Layered - Overall Arch.
-					</section>
-					<!-- 003.c Services, Hexagonal, CQRS - for App Layer -->
-					<section>
-						Services, Hexagonal, CQRS - for App Layer
-					</section>
-					<!-- 003.d Event Driven - for Integration (events consumption & generation) -->
-					<section>
-						Event Driven - for Integration (events consumption & generation)
-					</section>
-					<!-- 003.e Batches - Messaging, EAI -->
-					<section>
-						Batches - Messaging, EAI
-					</section>
+					<textarea class="comicbrowser-render">
+							"The Engineer's Dilemma" black 
+
+							kesiev with glasses using mac looking left 
+							lara  with mug looking left says
+							peter using tablet looking left
+							anna  using phone looking left
+							
+							a new very large office panel
+							kesiev 
+							lara
+							kesiev says "What does it take to be a Junior Engineer?"
+							lara says "and then to move up the levels as a Senior Engineer??"
+
+							a new panic panel
+							peter replies "Technology Breadth, Depth and Application!"
+							peter says "Speak up, Ask questions, Engage!"
+							peter replies "Be Curious & Independent!"							
+
+							a new panic panel
+							peter says "Increased Breadth, Depth in Business & Technology!"
+							peter replies "Develop Acumen & Apply common sense!"
+						</textarea>
 				</section>
-				<!-- 004. Technologies -->
 				<section>
-					<!-- 004.a Technology selection for Web layer -->
-					<section>
-					</section>
-					<!-- 004.b Technology selection for Aeb layer -->
-					<section>
-					</section>
-					<!-- 004.c Technology selection for DB layer -->
-					<section>
-					</section>
-					<!-- 004.d CAP Theorem -->
-					<section>
-					</section>
-					<!-- 004.e Technology selection for Other layers -->
-					<section>
-					</section>
+					<textarea class="comicbrowser-render">
+							"Build a PDP Web UI powered by public facing Product, Price Services" black 
+
+							a new office panel
+							bianca with blocknotes looking right replies to self "*Product Manager"
+							kesiev with glasses using mac looking left replies to self "*SDE1"
+							lara  with mug looking left says to self "*SDE2"
+							peter using tablet looking left replies to self "*Divine Voice!"
+							anna  using phone looking left says to self "*Dev. Manager"
+							
+							another new panel
+							narrator says "the requirement in a nutshell (as business wants)"
+							bianca same
+							kesiev same looking left using mac
+							lara same
+							bianca replies "we need a Product Details Page to show product details & help customers shop"
+							bianca says "ex., for iPhone8, Groceries etc."
+
+							another new panel
+							bianca looking right with blocknotes
+							kesiev with glasses looking left using mac
+							lara looking left with mug
+							bianca same says "Key Features - product details, stock, price, add to cart!"
+
+						</textarea>
 				</section>
-				<!-- initial slides -->
 				<section>
-					<!-- 002.c. design flow & implementation slide -->
-					<section>
-						<table>
-							<tr>
-								<td>
-									<span>
-										<!-- technique to overlay images and animate them, within a slide using fragments-->
-										<p class="fragment fade-in current-visible" style="position:absolute; left:210px; top:100px;">
-											<textarea class="comicbrowser-render">
-												"Choose the Architecture" black 
-												a new passion panel
-												narrator says "Layered"
-											</textarea>
-										</p>
-										<span>
-											<p class="fragment fade-up current-visible" style="position:absolute; left:210px; top:100px;">
-												<textarea class="comicbrowser-render">
-													" "
-													a new passion panel
-													narrator says "Layered"
-												</textarea>
-											</p>
-											<span>
-												<p class="fragment slide current-visible" style="position:absolute; left:210px; top:100px;">
-													<textarea class="comicbrowser-render">
-														" "
-														a new hypnotic panel
-														narrator says "Hexagonal"
-													</textarea>
-												</p>
-												<span>
-												<p class="fragment convex current-visible" style="position:absolute; left:210px; top:100px;">
-													<textarea class="comicbrowser-render">
-														" "
-														a new confusion panel
-														narrator says "CQRS"
-													</textarea>
-												</p>
-												</span>
-											</span>
-										</span>
-									</span>
-									<span>
-									<p class="fragment concave current-visible" style="position:absolute; left:210px; top:100px;">
-										<textarea class="comicbrowser-render">
-											" "
-											a new despair panel
-											narrator says "N-Tier"
-										</textarea>
-									</p>
-									</span>
-									<span>
-									<p class="fragment fate-out current-visible">
-										<textarea class="comicbrowser-render">
-											" "
-											a new lovely panel
-											narrator says "Event Driven / Event Sourcing"
-										</textarea>
-									</p>
-									</span>
-								</td>
-							</tr>
-							<tr> 
-								<td>
-									<small>
-										What does each architecture type mean?<br>
-										When should i use CQRS?<br>
-										How do i choose between N-Tier & Hexagonal architecture styles?
-									</small>
-								</td>
-								<td data-markdown>
-									<script type="text/template">
-										<!-- .element: class="fragment" style="font-size: 0.55em" -->
-										* [Layered Architectures](http://www.softwarearchitectures.com/qa.html)
-										* [Hexagonal Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [CQRS](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [N-Tier](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [Event Driven / Event Sourcing](https://en.wikipedia.org/wiki/Multitier_architecture)
-									</script>
-								</td>
-							</tr>
-						</table>
-					</section>	
-					<section data-background-image="https://martinfowler.com/bliki/images/cqrs/single-model.png">
-						<a href="https://martinfowler.com/bliki/CQRS.html"></a>
-					</section>
-					<section data-background-iframe="http://www.softwarearchitectures.com/qa.html" data-background-size="content">
-					</section>
-					<section data-background-iframe="http://alistair.cockburn.us/Hexagonal+architecture">
-					</section>
-					<section data-background-iframe="https://martinfowler.com/bliki/CQRS.html">
-					</section>
-					<section data-background-iframe="https://en.wikipedia.org/wiki/Multitier_architecture">
-					</section>
-					<section data-background-iframe="https://en.wikipedia.org/wiki/Event-driven_architecture">
-					</section>
-					<!-- 002.c. design flow & implementation slide -->
-					<section>
-						<table>
-							<tr>
-								<td>
-									<p class="fragment">
-										<textarea class="comicbrowser-render">
-											"Choose the Architecture" black 
-											a new passion panel
-											narrator says "Layered"
-											a new hypnotic panel
-											narrator says "Hexagonal"
-											a new confusion panel
-											narrator says "CQRS"
-											a new despair panel
-											narrator says "N-Tier"
-											a new lovely panel
-											narrator says "Event Driven / Event Sourcing"
-										</textarea>
-									</p>
-								</td>
-							</tr>
-							<tr > 
-								<td>
-									<small>
-										What does each architecture type mean?<br>
-										When should i use CQRS?<br>
-										How do i choose between N-Tier & Hexagonal architecture styles?
-									</small>
-								</td>
-								<td data-markdown>
-									<script type="text/template">
-										<!-- .element: class="fragment" style="font-size: 0.55em" -->
-										* [Layered Architectures](http://www.softwarearchitectures.com/qa.html)
-										* [Hexagonal Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [CQRS](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [N-Tier](https://en.wikipedia.org/wiki/Multitier_architecture)
-										* [Event Driven / Event Sourcing](https://en.wikipedia.org/wiki/Multitier_architecture)
-									</script>
-								</td>
-							</tr>
-						</table>
-					</section>						
-					<!-- 002.d. design flow & implementation slide -->
-					<section> <!-- data-background-image="https://upload.wikimedia.org/wikipedia/commons/5/51/Overview_of_a_three-tier_application_vectorVersion.svg" data-background-size="cover" -->
-						<table>
-							<tr>
-								<td colspan="2">
-									<textarea class="comicbrowser-render">
-										"Let's go with N-Tier Architecture" black
-										a new dark hypnotic panel
-										kesiev using pc looking up says "ummm, where do i start?"
-										a new dark office panel
-										kesiev using pc looking down says "How do i split the layers??"
-										lara replies "how about Web, App, DB Layers?"
-										a new dark office panel
-										kesiev using pc looking right glasses with mug says loudly "yeah, why not!"
-										lara looking left thumb up
-									</textarea>
-								</td>
-							</tr>
-							<tr > 
-								<td>
-									<small>
-										Why Layering?<br>
-										What's it's importance?
-									</small>
-								</td>
-								<td data-markdown>
-									<script type="text/template">
-										<!-- .element: class="fragment" style="font-size: 0.55em" -->
-										* [Software Architectures](http://www.softwarearchitectures.com/qa.html)
-										* [Multitier Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
-									</script>
-								</td>
-							</tr>
-						</table>
-					</section>						
+					<textarea class="comicbrowser-render">
+							"... Contd : Build a PDP Web UI powered by public facing Product, Price Services" black 
+							a new very large office panel
+							bianca looking right with blocknotes
+							kesiev with glasses using mac looking left
+							lara looking left with mug
+
+							bianca same replies "Stock, Prices keep changing - updated by partners, internal systems in real time"
+							bianca same says "Product data from partners are recd. in batches at specific intervels"
+
+							another new panel
+							bianca same says "all changes to products, prices, stocks needs to be sent to the warehouse" 
+							kesiev same
+							lara same
+
+						</textarea>
 				</section>
-				<!-- 003. Q&A slide -->
-				<section># Q &amp; A</section>
-				<!-- 004. Thank you slide -->
+				<section>
+					<textarea class="comicbrowser-render">
+							"... Contd : Build a PDP Web UI powered by public facing Product, Price Services" black 
+							another new panel
+							narrator says "the flood of Q's'"
+							lara looking right with mug
+							lara same says "Throughput (req./sec.)?"
+							lara same replies "Response Time SLAs?"
+							kesiev same looking up says "How many concurrent users / hours?"
+							kesiev same replies "How many page views, hits?"
+
+							another new panel
+							lara same
+							kesiev same replies "we'll need a web application; a service & a data store"
+							lara same replies "plus a batch processor + published events???"            
+							lara sadic smile says "and all in the same server! Easy Peasy!"            
+
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"... Contd : Build a PDP Web UI powered by public facing Product, Price Services" black 
+							another new panel
+							bianca serious mouth looking up with blocknotes replies "resp. times < 200 ms; < 2 Seconds per page"
+							bianca same says "throughput > 1500 req./sec (services); "
+							bianca same says "concurrent users - ~500 & growing"
+
+							another new panel
+							bianca same replies "page load times - < 2 sec."
+							bianca same replies "volumes - ~2 million page views/day"
+							bianca same says "Data - 5 Million Products & Growing"
+							bianca same says "Business hours - 5AM to 12AM"
+
+							a new panic panel
+							peter using tablet looking right looking down says "Requirements are considered COMPLETE only when the NFRs are called out!"
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"Wait a min ... there's more" as black
+							a new office panel
+							narrator says "....oh yeah, there's more:'"
+							bianca looking right with blocknotes says "and ...its gotta be secure"
+							bianca same replies "no outages - pages should be available through business hours - 99.9999"
+
+							a new panic panel
+							narrator says "the divine voice booms..."            
+							peter using tablet looking right looking down replies "Don't you forget the engineering best practices!"
+							peter same says "and high code quality & maintainability"
+							peter same replies "and reliability, resilence & high availability"
+
+							a new office panel
+							anna looking right joined hands replies "and flexibility, extensibility, testability"
+
+							another new despair panel
+							kesiev with glasses absent eyes unsure mouth says loudly whispering to self "!@#!@#"
+							lara absent eyes snobbish mouth replies loudly whispering to self "~$@#!"
+
+						</textarea>
+				</section>
+			</section>
+			<!-- 003. Technology Selection -->
+			<section>
+				<h4>What next!?</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Too much to chew! Where do we start?!" black 
+
+						<!--Character Warm-up-->
+						kesiev with glasses looking right using mac
+						lara joined hands and looking left 
+						peter looking left looking up using tablet 
+						anna using phone looking left 
+						bianca with blocknotes looking right replies to self "*Product Manager"
+
+						a new office panel
+						narrator says whispering "Functionality - PDP Page? Services? Partner Batches??"
+						kesiev replies "Let's start with PDP!"
+						lara says "Nope! Services first!"
+						anna says "Data for the services? Partner Batches first!"
+						
+						a new panic panel
+						peter replies "Remember you are a Team! Divide & Conquer!"
+						peter says "Every independent road converges @ a circle!"
+
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"...Too much to chew! Where do we start?!" black 
+						a new office panel
+						narrator says whispering "Technology?"
+						kesiev replies ".net - it has enterprise support, productivity & excellent tooling"
+						lara looking left says "Java - it's cross platform; fast, agile & portable"
+						kesiev joined hands looking left says "MEAN - lightweight, fast development"
+						anna 
+
+						a new panic panel
+						peter replies "Choose the technologies for a purpose!"
+						peter says "Quantify, Challenge & Measure Objectively!"
+
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"...Too much to chew! Where do we start?!" black 
+						a new office panel
+						narrator says whispering "Approach?"
+						kesiev says "Do we have a Roadmap?!"
+						lara same replies "Let's prioritize & align deliveires with business"
+						anna same says "and build working, demonstrable software - Incrementally!"
+						bianca looking left looking up thumb up replies whispering loudly "Wonderful!"
+
+						a new panic panel
+						peter replies "Have a humble start. Everything evolves!"
+						peter says "That includes Architecture & Design!"
+					</textarea>
+				</section>
+				<section>
+					Links:
+					Domain Driven Design - Eric Evans
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"...Too much to chew! Where do we start?!" black 
+						
+						another panel
+						kesiev same looking up says "What'd be the pro's & con's? Let's pick the best tech. stack suited to our needs."
+						lara looking up looking left thumb up
+
+						a new panic panel
+						peter looking left using tablet replies "Good grasp of at least one major programming language"
+						peter same replies "a polyglot, preferably"
+						peter same says "develop breadth, keep updated about industry news & developments"
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"...contd!" black 
+
+						a new dark mountain panel
+						kesiev looking up says "Java vs .Net vs .Net Core vs MEAN???"
+						
+						a new dark mountain panel
+						lara looking up replies to self "Spring or WebAPIs??"
+						lara looking up replies to self "Vert.X or Node??"
+						lara looking up replies to self "Play or Nancy?"
+						lara looking up replies to self "RxJava or Akka??"
+						
+						a new dark mountain panel
+						lara looking left replies "DDD & Domain Modelling for services"
+					</textarea>
+				</section>
+				<section>
+                    <P>
+						Which Technology to choose for App Layer?
+						<br><img height="45%" width="45%" src="images/NFR/WebLayer.jpg" alt="MacDown logo">
+						<br>NGINX beased on event loop scales well also provides load balncing and reverse proxy capabilities
+					</p>
+				</section>
+				<section>
+					<p>
+						Choose the Framework with right Threading Model
+						<br>Multiteactor Pattern Node.js or Vert.x?
+						<br><img height="50%" width="50%" src="images/OOAD/Multi-Reactor-Pattern.png" alt="MacDown logo">
+					</p>
+				</section>
+				<section>
+                    <p>
+						<img height="60%" width="60%" src="images/Architecture/CoreDomain.jpg" alt="MacDown logo">
+					</p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Choose the Technologies, Frameworks & Tools for DB Layer" black 
+
+						a new dark mountain panel
+						lara looking up says "RDBMS vs NoSQL vs Columunar DB's'?"
+						lara same says "Choose appropriate type of database for specific usecases"
+
+						a new blank panel
+						peter looking left using tablet replies "CAP Theorem is crucial in selecting the DB's"
+
+					</textarea>
+				</section>
+                <section>
+                    <p>
+						CAP Therom
+                    	<br>Availability , Constitancy, Partition Tolerance
+                        <br><img height="60%" width="60%" src="images/DataBase/CAP Therom.jpg" alt="MacDown logo">
+					</p>
+                </section>
+				<section>
+					<p>
+						Ploygot DataBase for different purpose
+						<br><img height="40%" width="40%" src="images/Database/Ploygot-Db.jpg" alt="MacDown logo">
+					</p>
+				</section>
+				<section>
+					<p>
+						Ploygot DataBase for different purpose
+						<br><img height="40%" width="40%" src="images/Scaling/SQL-Scale.jpg" alt="MacDown logo">
+					</p>
+				</section>
+				<section>
+					<p>
+						Which Technology to choose in DB Layer?
+						<br>Choose the right data base based on the use case for data generation
+						<br><img height="60%" width="60%" src="images/DataBase/Type-Data.jpg" alt="MacDown logo">
+					</p>
+                </section>
+                <section>
+					<p>
+                    	Which Technology to choose for nature of data
+                        <br>Choose the right data base based on the type of data
+                        <br><img height="60%" width="60%" src="images/DataBase/NoSql.jpg" alt="MacDown logo">
+					</p>
+                </section>
+			</section>
+			<!-- 004. Architecture & Design -->
+			<section>
+				<h4> Architecture & Design ...</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+							"All in One Box - Not a very good idea!" black
+
+							a new office panel
+							narrator says "the divine voice booms..."            
+							peter evil smile looking right replies "Have you thought about the Advantages & Disadvantages?"
+
+							a new very large office panel
+							narrator says "Good for POC/Dev., Not fit for Production"
+							kesiev looking right to lara says "Low Performance - Resource Contention & Exhaustion"
+							lara looking left replies "SPOF - Failure in one system affects all others"
+							lara looking left replies "Cannot Scale"
+							kesiev looking right to lara says "Maintenance & Troubleshooting becomes a nightmare"
+
+							a new panic panel
+							peter same using tablet looking left says "Think about the NFRs! It'll change the whole landscape"
+
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"Devs Thinking..." black
+							a new despair panel
+							kesiev with glasses looking up using mac replies "OMG! Are we missing something?"
+							kesiev same replies "Architecture & Design?"
+							lara looking left with mug replies shocked whispering "Ah! That's a big one!"
+
+							a new panic panel
+							kesiev same says "may we should draft the high level architecture"
+							lara same replies "and drill down to low level design"
+
+							a new office panel
+				            narrator says "Architectural Styles/Patterns"
+							peter looking right using tablet replies "That'd be Coarse grained, module & sub-system level solutions (including relationships, collaborations) to a problem in a particular context"
+							peter same says "Architecture is all about tradeoff's & design decisions!"
+				        </textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Architectural Styles/Patterns & Selection" black
+						a new city panic panel
+						lara looking right says "Layered"
+						a new hypnotic panel
+						kesiev with glasses looking left says "Hexagonal"
+						a new confusion panel
+						lara same says "CQRS"
+						a new despair panel
+						kesiev same says "N-Tier"
+						a new office panel
+						lara same says "Event Driven Event Sourcing"
+						a new crowded panel
+						kesiev same says "Microservices Architecture"
+						a new panel
+						peter looking left using tablet replies "It's contextual! And could be mixed where needed."
+						peter same says "For our problem statement, we'll choose the layered architecture"
+					</textarea>
+				</section>
+				<section>
+					<pre>
+* [Layered Architectures](http://www.softwarearchitectures.com/qa.html)
+* [Hexagonal Architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+* [CQRS](https://en.wikipedia.org/wiki/Multitier_architecture)
+* [N-Tier](https://en.wikipedia.org/wiki/Multitier_architecture)
+* [Event Driven / Event Sourcing](https://en.wikipedia.org/wiki/Multitier_architecture)
+					</pre>
+				</section>
+				<section>
+					<p>
+						Layered Architecture
+						<br><img height="65%" width="45%" src="images/Architecture/Layered-Architecture.jpg" alt="Layered Architecture">
+						<br>First Basic Architecture
+					</p>
+				</section>
+				<section>
+					<p>
+						Hexagonal Architecture
+						<br><img height="25%" width="25%" src="images/Architecture/Hexogonal.jpg" alt="Hexagonal Architecture">
+						<br>The concepts of Adapters with CoreDomain
+					</p>
+				</section>
+				<section>
+					<p>
+						Hexogonal Architecture SOA
+						<br><img height="50%" width="50%" src="images/Architecture/Hexogonal-Rest.jpg" alt="MacDown logo">
+						<br>The concepts of Adapters with CoreDomain & with SOA
+					</p>
+				</section>
+				<section>
+					<p>
+						CQRS
+						<br><img height="50%" width="50%" src="images/Architecture/CQRS.jpg" alt="MacDown logo">
+						<br> Seperate FLow for Query and Create
+					</p>
+				</section>
+				<section>
+					<p>
+						Event Sourcing
+						<br><img height="50%" width="50%" src="images/Architecture/Event-Source.jpg" alt="MacDown logo">
+						<br> Events are stored no events are updates or deleted
+					</p>
+				</section>
+				<section>
+					<p>
+						Event Driven
+						<br><img height="50%" width="50%" src="images/Architecture/Event-Driven.jpg" alt="MacDown logo"></p>
+						<br>Different System integrtate using Domain Events
+					</p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"N-Tier Architecture & Layers" black
+							a new dark hypnotic panel
+							kesiev with glasses while using mac looking up, says "Where to start?"
+							a new dark office panel
+							kesiev same while using mac looking down, replies whispering "and how to split the layers??"
+							lara looking left says "Simple. Web, App, DB Layers."
+							lara replies "The web servers are powered by microservices"
+							lara replies "and microservices read/write into the Datastore"
+
+							a new dark office panel
+							kesiev using pc looking right glasses with mug says "Ok! let's add more as needed"
+							lara looking left replies smiling with thumb up "Cool! let's go Agile! ;)"
+							a new very large panic panel
+							peter looking left using tablet says "Design & Archite cture shall evolve!"
+						</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Building the App - Choice of the programming style" black 
+
+						a new dark mountain panel
+						kesiev looking right says "Sync. vs Async. Programming?"
+						lara looking left replies "Sync is Blocking (linear execution) & apt. for low/very low volume systems"
+						lara same says "Async. is non blocking (queues/threads/event-loop)"
+						lara same says "High volume systems with short response time SLAs need Async."
+
+						a new dark mountain panel
+						narrator says "Imperitive or Functional Programming?"
+						kesiev same says "Impertive programming modifies state (i.e., mutable & has side effects) -> OOPS"
+						lara same replies "Functional programming doesn't modify state (i.e., immutable & NO side effects)"
+
+						a new panic panel
+						peter looking left using tablet replies "It's best for distributed systems which need high scalability"
+						peter same says "and better readability, easier maintenance"
+					</textarea>
+				</section>
+				<section>
+					<img height="60%" width="60%" src="images/OOAD/Programming-Paradigim.jpg" alt="MacDown logo"/>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/OOAD/OO-Principle.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="70%" width="70%" src="images/Asynch/Asych.JPG" alt="MacDown logo"></p>
+					<p class="fragment"> Synchronous does not perform all the time </p>
+					<p class="fragment"> AMQP based Prtocool Product Rabit MQ </p>
+				</section>
+				<section>
+					<pre>
+https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming
+https://blog.heroku.com/concurrency_is_not_parallelism
+https://talks.golang.org/2012/waza.slide#1
+					</pre>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Design, Design, Design" black
+
+						a new office panel
+						narrator says "contd... devs think"            
+						kesiev with glasses looking up using mac replies "PDP could be a feature/component?"
+						lara looking left replies whispering "BDD should help! It's all about Domains, Models, Aggregates & Bounded Contexts"
+						lara same says to self "along with ATDD/TDD"
+						lara same says to self "applying design principles, patterns & best practices"
+
+						a new office panel
+						kesiev same says to self "KISS, YAGNI, SOLID"
+						lara same replies to self "clean code ... & no code smells!"
+						kesiev hands joined replies to self "Imperitive vs Functional?"
+						lara says to self "code reviews? static analysis...!!"
+						lara says to self "coverage & profiling..."
+						kesiev joined hands with mug replies to self "Sync. vs Async??"
+						
+						a new office panel
+						narrator says "Technologies..."
+						kesiev looking up with mug says to self "Java? .Net? MEAN? GoLang?"
+						lara replies to self "RDBMS / NoSQL?"
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Breaking down into managable pieces - Functional Components" black 
+
+						a new dark large office panel
+						narrator says "...  next steps"
+						kesiev is with glasses using mac at desk, looking right at lara and replies "We'd need the Page Design (UX)"
+						kesiev same says "Less/Sass & Bootstrap?"
+						lara joined hands looking left at kesiev replies "with Module/Component & Package Design!"
+
+						a new panic panel
+						peter looking left says "different approaches - SPA, Serverside page rendering (Javascript intensive) vs Conventional Serverside Pages (Non-Javascript)"
+
+						a new very large dark office panel
+						narrator says "(functional) PDP - to collate product, price & stock data"
+						kesiev same says "wonder, how we'd get the data and render the page?"
+						lara looking left replies "SoC - Use MVC (serverside) / MVVM (clientside)"
+						lara same says "And a templating engine to render the views!"
+
+						a new panic panel
+						peter looking left says "Understand frameworks, tools of the chosen tech. stack, languages"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"Breaking down into managable pieces - Non-Functional Components" black 
+
+							a new very large dark office panel
+							narrator says "... and a laundry list of (non-functional) components"
+							kesiev with mug same in hand
+							kesiev same says "Error & Exception handling?"
+							lara same says "Logging & Tracing..."
+							lara same says "Profiling & Measuring..."
+
+							a new very large dark office panel
+							narrator says "continued..."
+							lara same replies "Monitoring & Alerting"
+							lara same replies "Audit trail"
+							lara same replies "Login & Single Sign on"
+							
+							a new panic panel
+							peter looking left using tablet replies to self "Thy shall design & modularize via components!"
+							peter same says to self "and apply design principles"
+							peter same replies to self "and use design patterns"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+							"Web Layer - Links" black 
+							
+							a new very large dark panel
+							somebody says to self "Angular.js - MVC/MVVM" 
+							somebody replies to self "Vue.js - best of angular+React+Ember"
+							somebody says to self "Aurelia.js - "
+							somebody says to self "React / Redux - MVC"
+							somebody says to self "JQuery + BootStrap - "
+							somebody replies to self "Node.js"
+
+							a new very large dark panel
+							somebody says to self "log4j / log4net / Enterprise Libraries" 
+							somebody replies to self "Vue.js - best of angular+React+Ember"
+							somebody says to self "Aurelia.js - "
+							somebody says to self "React / Redux - MVC"
+							somebody says to self "JQuery + BootStrap - "
+							somebody replies to self "Node.js"
+						</textarea>
+				</section>
+				<section>
+					<pre>
+https://msdn.microsoft.com/en-us/library/ms998530.aspx
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=11711
+https://msdn.microsoft.com/en-us/library/ff921345.aspx
+https://msdn.microsoft.com/en-gb/library/ff648138.aspx
+http://dataguidance.codeplex.com/releases
+
+Architecture
+http://shapingsoftware.com/
+http://sourcesofinsight.com/
+					</pre>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Design Patterns - Fine grained, class level solution to a problem in a particular context" black 
+
+						a new dark office panel
+						narrator says "...  Creational"
+						kesiev looking right to lara says "Builder, Factory, Abstract Factory..."
+						lara looking left with joined hands replies "and there's Singleton, Prototype!"
+						lara same says "CP's make object creation & management decoupled"
+
+						a new dark office panel
+						narrator says "...  Structural"
+						kesiev looking right to lara says "Adapter, Proxy, Decorator, Facade..."
+						lara looking left with joined hands replies "Bridge, Composite & the unique Flyweight!"
+						lara same says "SP's help to organize and structure objects"
+
+						a new dark office panel
+						narrator says "...  Behavioral"
+						kesiev looking right to lara says "Observer, Strategy, CoR, Command, Visitor..."
+						lara looking left with joined hands replies "Iterator, State(FSM), Interpreter, Mediator, Memento & Template Method!"
+						lara same says "BP's help to manage algo., control execution flow, streamline relationships & responsibilities of objects"
+
+						a new panic panel
+						peter looking left using tablet replies "DP's are proven solutions for similar problems; Help communicate designs to other devs. easier"
+						peter same says "btw, you can see patterns abiding and applying the design principles"
+					</textarea>
+				</section>
+				<section>
+					<p><img height="60%" width="60%" src="images/Design-Pattern/Stratergy-stage1.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="60%" width="60%" src="images/Design-Pattern/Stratergy.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="50%" width="50%" src="images/Design-Pattern/Observer.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="70%" width="70%" src="images/Design-Pattern/Observer-code.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<pre>
+https://dzone.com/refcardz/design-patterns
+					</pre>
+				</section>
+			</section>
+			<!-- 005. Quality -->
+			<section>
+				<h4>Ensuring Quality....</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+							"Quality" black
+
+							a new office panel
+							narrator says "BDD & Acceptance Testing"
+							peter looking up says "Functional validation - From Requirements to Release!"
+
+							a new very large office panel
+							lara looking right replies "Executable Specification (Detailed Executable Acceptance Criteria with specific examples)"
+							kesiev with glasses looking left to lara says "Living Documentation (Execution reports)"
+							kesiev same replies "Ubiquitous language (shared domain language)"
+
+							a new very large office panel
+							lara looking right replies "Building quality grounds up"
+							kesiev with glasses looking left to lara says "Follow design principles"
+							kesiev same replies "Practice clean code"
+
+							a new panic panel
+							peter looking left using tablet replies "Adopt ATDD,TDD as the defacto programming style"
+							peter same says "Testing IS NOT an overhead!"
+					</textarea>
+				</section>
+				<section>
+					<img src="images/bdd.png" />
+					<a href="https://dne.com/articles/a-few-benefits-you-get-by-doing-bdd">benefits of bdd</a><br>
+					<a href="https://automationpanda.com/2017/02/04/bdd-101-frameworks/">BDD Frameworks</a><br>
+					<a href="https://www.manning.com/books/bdd-in-action">Book: BDD in Action</a><br>
+					<a href="http://dannorth.net/introducing-bdd/">BDD - Introduction from Dan North</a><br>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Design Principles" black 
+
+						a new very large dark office panel
+						narrator says "In the beginning there were ..."
+						kesiev with glasses looking up using mac says "High Cohesion"
+						lara looking left using mac replies "and Low Coupling"
+
+						a new very large dark office panel
+						narrator says "and then came SOLID"
+						kesiev looking right to lara says "SRP - Single Responsibility Principle"
+						kesiev looking right to lara replies "OCP - Open Closed Principle"
+						lara looking left replies "ISP - Interface Segregation Principle"
+						kesiev looking right to lara says "LSP - Liskhov Substitution Principle"
+						lara looking left says "IOC/DI - Inversion of Control"
+						
+						a new dark office panel
+						narrator says "...  YAGNI, DRY, SLAP"
+						kesiev looking right to lara says "YAGNI - You Ain't Gonna Need It'"
+						lara looking left replies "DRY - Don't Repeat Yourself'"
+
+						a new panic panel
+						peter looking left using tablet replies "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live"
+						
+					</textarea>
+				</section>
+				<section>
+					<p><img height="30%" width="30%" src="images/OOAD/SOLID.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<pre>
+https://leanpub.com/solid/read#leanpub-auto-test-driven-design---tdd
+http://principles-wiki.net/principles:start
+					</pre>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Coding Best Practices" black 
+
+						a new dark office panel
+						narrator says "...  Clean Code"
+						lara with glasses looking up palms up replies "Follow conventions, guidelines, KISS, Boy-scout rule!"
+						lara same says "...Structured Code, Well managed packages, Right Naming, Consistency .. and more!!"
+
+						a new dark office panel
+						narrator says "...  Code Smells"
+						kesiev with glasses using mac looking right to lara says "Rigidity, Fragility, Immobility, Viscocity, Complexity, Opacity"
+
+						a new dark despair panel
+						peter with glasses looking up with claw hands and possessed replies "Avoid Code Smells like the plague!"
+
+					</textarea>
+				</section>
+				<section>
+					<pre>
+http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.1.pdf
+https://www.amazon.in/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM
+http://www.hanselman.com/blog/SixEssentialLanguageAgnosticProgrammingBooks.aspx
+https://github.com/chhantyal/influential-cs-books
+					</pre>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Contd.. Ensuring Quality - Packaging for delivery" black 
+
+						<!-- start -->
+						a new very large office panel
+						narrator says "separation of interfaces, common tools"
+						lara says "functional separation using packages/assemblies"
+						kesiev looking right to lara says "Convention over Configuration"
+						lara looking left replies "Multiple packages/assemblies - separate the interfaces in a dedicated assembly"
+						
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"SCM, CI/CD" black 
+
+						<!-- start -->
+						a new office panel
+						narrator says "build, test, deploy - and automate 'em all'"
+						kesiev looking right to lara says "why build automation?"
+						lara looking left replies "faster time to market"
+						lara looking left replies "deliver changes to production safely and quickly in a sustainable way"
+
+						<!-- do -->
+						a new very large office panel
+						narrator says "Tools of the trade"
+						kesiev same says "GIT, Jenkins, Chef, Ansible"
+						lara looking left says "Trigger jenkinks builds on checkin to GIT"
+						lara same says "run unit, acceptance tests after sucessful build from jenkins"
+						lara same replies "and deploy to dev./test environment"
+
+						a new office panel
+						kesiev same says to self "Canary Releases / Blue Green Deployment"
+						lara same says "with least distruption to the environments" 
+						
+						<!-- end -->
+						a new very large panic panel
+						peter looking left using tablet replies "repeat the test & deploy across staging, ppe, prod"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Building the App & Service - Components, ensuring quality" black 
+
+						<!-- do -->
+						a new very large office panel
+						kesiev with glasses looking right to lara says "BDD & Acceptance Testing"
+						kesiev same says "Static Analysis Tools, Refactoring"
+						lara looking left replies "FxCop, SonarQube etc."
+						
+						<!-- do -->
+						a new very large office panel
+						kesiev looking right to lara says "ATDD/TDD"
+						lara looking left replies "Unit testing, Coverage & Profiling"
+						kesiev looking right to lara replies "Performance, Stress/Soak Testing"
+						lara looking left says "Security, Vulnerability (PEN) Testing"
+
+					</textarea>
+				</section>
+			</section>
+			<!-- 006. Performance -->
+			<section>
+				<h4>Performance</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Why improve performance?" black 
+
+						a new panel
+						kesiev with glasses looking right to lara says "Better user experience"
+						lara looking left says "right, without which the functionality is of not much use"
+						lara same says "Imagine a crawling system!"
+
+						a new very large panel
+						kesiev same says "There are multiple ways & approaches of improving performance"
+						lara same replies "and both at high, lower levels of architecture & design"
+						lara same says "starting from capacilty planning, load testing & deployment planning"
+
+						a new very large panic panel
+						peter looking left using tablet replies "remember, even the deployment strategy will make a huge difference"
+
+					</textarea>
+				</section>
+				<section>
+					<pre>
+http://perftesting.codeplex.com/
+http://guidanceengineering.codeplex.com/
+https://msdn.microsoft.com/en-us/library/ms998408.aspx
+https://msdn.microsoft.com/practices
+					</pre>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"How to improve performance" black 
+
+						a new panel
+						narrator says "at an architectural level - across layers"
+						kesiev looking right to lara says "Caching"
+
+						<!-- start -->
+						a new office panel
+						narrator says "caching"
+						kesiev looking right to lara says "local or distributed?"
+						lara looking left replies "distributed for consistent data"
+						lara looking left replies "local leads to stale data"
+
+						<!-- do -->
+						a new very large office panel
+						narrator says "static & dynamic content"
+						kesiev looking right to lara says "use CDN for static"
+						lara looking left replies "use distributed caches for optmizing reads - cache what doesn't change frequently"
+						lara same says "Apache ignite, Redis, Hazelecast, MemCached, AppFabric etc."
+
+						a new blank panel
+						narrator says "types of payloads - performance optimizations"
+						kesiev looking right says "JSON, XML is not efficient when sizes are more!"
+						lara looking left says "Apache Thrift, Avaro or Google ProtoBuf are perfect for large sizes"
+                        lara same says "They provide efficient data marshelling & reduce the size"
+
+						a new mountain panel
+						narrator says "at a design & coding level"
+						lara says "choice of algorightms & data-structures - make a big impact in the runtime performance of the application"
+
+					</textarea>
+				</section>
+				<section>
+					<p><img height="70%" width="70%" src="images/Caching/Distributed-Cache.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Concurrency & Parallelism" black 
+
+						a new dark mountain panel
+						narrator says "Concurrency vs Parallel Processing??!"
+						lara same replies "Concurrency is about multiple tasks done by one person capable of multi tasking - ex: single core processor with threads"
+						lara same says "Parallism is about gettings tasks done by multiple people - ex: multi core processor"
+
+						a new dark mountain panel
+						narrator says "Concurrency"
+						lara same replies "Threading & Synchronization - Thread pools, mutexes, critical sections etc."
+
+						a new dark mountain panel
+						narrator says "Parallism"
+						lara same says "Parallel for each, Parallel libraries"
+
+						a new panic panel
+						peter looking left using tablet replies "Use it wise!"
+
+					</textarea>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/cnp.linear.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/cnp.concurrent.png" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/cnp.concurrent-and-parallel.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Optimizations - Space & Time Complexity" black 
+
+						a new dark mountain panel
+						narrator says "Big O is about how long it takes (space & time complexity) for an algorithm to execute over N elements"
+						kesiev same says "Why bother about data-structures & algorithms - Big(O)?"
+						lara same says "Big O = the function / algorithm, N = the number of elements"
+						lara same replies "It helps choose most effecient algo."
+
+						a new dark mountain panel
+						kesiev same says "What's 0(1), 0(log n), 0(n), 0(n^)"
+						lara same replies  "O(1) - constant time - same execution time regardless of data size"
+						lara same says "O(n) - linear time - more elements, longer the time"
+						lara same replies "O(n^) - linear time - more iterations + more elements = time ^ iterations"
+						lara same says "O(log n) - quadratic time - divide & conquer - more or less same time regardless of increasing elements - ex: Binary Search "
+
+						a new panic panel
+						peter looking left using tablet replies "Big O helps choose the right algorithm when dealing with large data"
+						peter same says "and that's KEY for performance SLAs"
+
+					</textarea>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/big.o.layman-terms.png" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<pre>
+https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+https://www.youtube.com/watch?v=__vX2sjlpXU
+https://www.youtube.com/watch?v=v4cd1O4zkGw
+https://www.youtube.com/watch?v=-Eiw_-v__Vo
+http://bigocheatsheet.com/
+https://en.wikipedia.org/wiki/Big_O_notation
+http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/
+http://algorithmiccomplexity.com/
+http://web.mit.edu/16.070/www/lecture/big_o.pdf
+					</pre>
+				</section>
+			</section>
+			<!-- 007. Scalability -->
+			<section>
+				<h4>Scalability</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Why Scale?" black 
+
+						a new very large blank panel
+						kesiev looking right says "We need to scale to address the growing business needs"
+						lara looking left replies "to serve more users/consumers, more business volumes, more traffic"
+						lara same says "and scaling needs to be done across all layers"
+						lara same says "remember the web layer is powered by app/services & which is inturn powered by DB layer"
+
+						a new panic panel
+						peter looking left using tablet replies "Scaling One layer only creates bottlenecks for future"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"How to Scale the web layer" black 
+
+						a new blank panel
+						narrator says "Horizontal & vertical scaling"
+						kesiev looking right says "How to scale?"
+						lara looking left replies "Scale UP or Scale Out!"
+
+						a new blank panel
+						lara same says "Scale Out when request volumes becomes very high!"
+						lara same replies "Use server farms/clusters with Load Balancers"
+						lara same replies "Scale Up to optimize performance"
+
+						a new blank panel
+						peter looking left using tablet replies "A Combination of DNS and CDN can help scale externally"
+
+					</textarea>
+				</section>
+				<section>
+					<p><img height="70%" width="70%" src="images/Scaling/Scaling-Weblayer-3.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"How to Scale the app layer" black 
+
+						a new blank panel
+						lara looking left replies "Scale Out - Horizontal Scaling, in a Shared nothing Architecture!"
+
+						a new blank panel
+						lara same says "Scale Out when consumption becomes very high!"
+						lara same replies "Use server farms/clusters with Load Balancers"
+
+						a new blank panel
+						peter looking left using tablet replies "Choose the right scaling strategy"
+
+					</textarea>
+				</section>
+				<section>
+					<p><img height="40%" width="40%" src="images/Caching/Microservices.jpg" alt="MacDown logo"></p>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"How to Scale the DB layer" black 
+
+						a new blank panel
+						lara looking right replies "NoSql's can Scale Out - Horizontal Scaling!"
+
+						a new blank panel
+						kesiev with glasses looking left replies "RDBMSs can't Scale Out easily! It's Scale UP mostly!"
+
+					</textarea>
+				</section>
+				<section>
+					<p>
+						Scale Database Layer
+						<br><img height="40%" width="40%" src="images/Database/Ploygot-Db.jpg" alt="MacDown logo">
+					</p>
+				</section>
+				<section>
+					<p>
+						CAP Theorem Revisited
+						<br><img height="40%" width="40%" src="images/Reliability/CAP-Theoroy-2.jpg" alt="MacDown logo">
+					</p>
+				</section>			
+			</section>
+			<!-- 008. HA -->
+			<!-- 009. Reliability -->
+			<section>
+				<h4>HA & Reliability</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"How to ensure high availability of the web layer" black 
+
+						a new office panel
+						narrator says "HA - Managing SPOF"
+						kesiev looking right to lara says "HA & Reliability needs to be built across each layer, if not at component level"
+						lara looking left replies "With application load-balancers"
+
+						a new very large office panel
+						kesiev looking right to lara says "Build Active/Active clusters"
+						lara looking left replies "With application load-balancers"
+						
+						a new very large office panel
+						kesiev looking right to lara says "Throttling & Rate-Limiting"
+						lara looking left replies "To ensure regulated access"
+						
+						a new very large office panel
+						kesiev looking right to lara says "Guaranteed Delivery & Processing"
+						lara looking left replies "Message Queues & Persistence"
+						
+						a new very large panic panel
+						kesiev looking right to lara says "Nginx, ARR, API Gateways"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Reliability, Resiliency & Robustness" black 
+
+						a new office panel
+						narrator says "Drilling down... what it means at code level"
+						kesiev looking right to lara says "Error handling & Exception Handling"
+						lara looking left replies "Circuit breakers"
+
+						a new very large office panel
+						kesiev looking right to lara says "Resiliency - Able to withstand failures"
+						lara looking left replies "Graceful degradation - Ability to operate at a lesser capacity instead of bringing the whole system down"
+						
+						a new very large panic panel
+						peter looking left using tablet replies "Build a robust system that runs consistently over a period of time"
+
+					</textarea>
+				</section>
+                <section>
+					<p>
+						Master Slave
+						<br>Master Slave replication
+						<br><img height="60%" width="60%" src="images/DataBase/Master-Slave.jpg" alt="MacDown logo">
+					</p>
+                </section>
+                <section>
+                    <p>
+						Master Slave
+						<br>Peer to Peer replication
+                        <br><img height="60%" width="60%" src="images/DataBase/peer-peer.jpg" alt="MacDown logo">
+					</p>
+                </section>
+				<section>
+					<p>
+						Sharding of NoSQL Database (Mongo DB)
+						<br><img height="40%" width="40%" src="images/Reliability/Sharding-Images1.jpg" alt="MacDown logo">
+					</p>
+				</section>			
+				<section>
+					<p>
+						Sharding of NoSQL Database (Mongo DB .. Continued)
+						<br><img height="40%" width="40%" src="images/Reliability/Sharding-Image2.jpg" alt="MacDown logo">
+					</p>
+				</section>			
+				<section>
+					<p>
+						Replication set
+						<br><img height="40%" width="40%" src="images/Reliability/Replication-set.jpg" alt="MacDown logo">
+					</p>
+				</section>			
+			</section>
+			<!-- 010. Security -->
+			<section>
+				<h4>Securing the System</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Security across layers" black 
+						"Reverse Proxies" black
+						"Internal & External Security" black 
+						"Authentication & Authorization" black
+						"OAuth, HTTPS" 
+						"Mechanisms to prevemnt DDOS attacks" 
+						"Vulnerability & PEN testing"
+
+						"Security is an Ocean in itself!" black 
+
+						a new blank panel
+						lara looking left replies "Each and every layer should be secure! Breaches should be contained in same level!"
+						lara same says "Build a DMZ - the ONLY layer accessible over the internet"
+
+						a new blank panel
+						lara same says "Whitelist well known consumers"
+						lara same replies "Use Reverse proxies to prevent exposing actual servers & for redirection"
+						lara same says "Open ONLY the ports that are needed"
+
+						a new blank panel
+						peter looking left using tablet replies "Keep the layers locked & allow top down unidirectional layer access"
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Internal & External Security" black 
+						"Authentication & Authorization" black
+						"OAuth, HTTPS" 
+						"Mechanisms to prevemnt DDOS attacks" 
+						"Vulnerability & PEN testing"
+
+						"Secure everything - hardware, software access" black 
+
+						a new blank panel
+						lara looking left replies "Strict authentication & authorization for both hardware & software resources"
+						lara same says "Secure communication only - via HTTPS & Encryption"
+
+						a new blank panel
+						lara same says "Avoid manual access to servers; Treat infra. as cattle - provision & teardown on demand"
+						lara same replies "Use OAuth & multi factor authentication"
+						lara same says "Leverage platforms, hardware appliances to prevent DDOS & other attacks"
+						kesiev with glasses looking right says "use the right tools - ex. OWasp; build security grounds up"
+
+						a new blank panel
+						peter looking left using tablet replies "Certify your system for Penetration / Vulnerability testing"
+
+					</textarea>
+				</section>
+				<section>
+					<pre>
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=1330
+http://azuresecurity.codeplex.com/
+
+https://msdn.microsoft.com/en-us/library/ms998530.aspx
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=11711
+https://msdn.microsoft.com/en-us/library/ff921345.aspx
+https://msdn.microsoft.com/en-gb/library/ff648138.aspx
+http://dataguidance.codeplex.com/releases
+					</pre>
+				</section>
+			</section>
+			<!-- 011. Others -->
+			<section>
+				<h4>Operational needs</h4>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Troubleshooting & Problem Solving" black 
+
+						a new panel
+						narrator says "Find the to Fix!"
+						lara says "RCA, Ability to reporduce issues, analyze logs"
+						Kesiev says "Approach & Tools of the trade are most important"
+
+						a new panel
+						lara replies "HTTP Proxies, Fiddler, Wireshark, EventLogs, Perfmon"
+						lara says "Core dumps, Debug diag."
+
+					</textarea>
+				</section>
+				<section>
+					<textarea class="comicbrowser-render">
+						"Monitoring & Alerting" black 
+
+						a new panel
+						narrator says "Keep an eye on the ecosystem!"
+						kesiev with glasses looking right says "Monitor resource contentions leading to server failures"
+						lara looking left replies "and resource consumption at system, component, API endpoint levels"
+						lara same replies "Build dashboards to measure & track response time SLAs, Availability SLAs, alerts on thresholds"
+						kesiev same says "Not to forget the live monitoring across the whole landscape"
+
+						a new panel
+						peter looking left using tablet replies "Choose the right tools - Splunk, ELK, AppDynamics"
+
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section># Links</section>
+				<!-- 004. Links -->
+				<section>
+					<a href="https://github.com/donnemartin/system-design-primer">Donne Martin's System Design Primer</a><br>
+					<p>Single absolute reference : an organized collection of resources for system design</p>
+				</section>
+				<section>
+					<p>There's much much more, but these links give you focus</p>
+					<pre>
+* http://blog.cleancoder.com/uncle-bob/2014/10/01/CleanMicroserviceArchitecture.html
+* http://microservices.io/
+* http://www.codingthearchitecture.com/
+* https://awesome-tech.readthedocs.io/
+http://alistair.cockburn.us/Hexagonal+architecture
+http://alistair.cockburn.us/Foundations+for+Software+Engineering
+http://www.idesign.net/
+http://www.bredemeyer.com/
+https://github.com/checkcheckzz/system-design-interview
+https://github.com/benas/awesome-software-craftsmanship
+https://github.com/onurakpolat/awesome-bigdata
+
+Books:
+https://www.manning.com/books/microservice-patterns
+https://github.com/miguellgt/books
+					</pre>
+				</section>
+			</section>
+			<section>
+				<!-- 005. Thank you slide -->
 				<section>
 					<textarea class="comicbrowser-render">
 						" "
-						new hypnotic panel
-						kesiev very large vanishing says loudly to self "thank YOU folks!" 
+						new very large hypnotic panel
+						narrator says "That's all for now folks!'"
+						bianca with blocknotes looking up 
+						kesiev with glasses using mac looking up
+						lara  with mug looking up
+						anna  using phone looking up
+						peter using tablet looking up
+						somebody says loudly to self "Thank YOU!" 
 					</textarea>
 				</section>
-			</div>
+				<section data-background-image=images/journey-of-a-thousand-miles.png data-background-size="75%">
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<!-- jquery & other pre-reqisites ! -->
-		<script src="lib/js/head.min.js"></script>
-		<script src="lib/js/jquery.js"></script> 
+	<!-- jquery & other pre-reqisites ! -->
+	<script src="lib/js/head.min.js"></script>
+	<script src="lib/js/jquery.js"></script>
 
-		<!-- reveal! -->
-		<script src="js/reveal.js"></script>
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				],
-				progress : true,
-				autoslide : 5000,
-				autoslideStoppable : true
-			});
-		</script>
-		<!-- stripthis! -->
-		<script type="text/javascript" src="dep/st/libs/comicbrowser.js"></script>
-		<script type="text/javascript" src="dep/st/libs/comicgenerator.js"></script>
-		<script type="text/javascript" src="dep/st/libs/stencils.js"></script>
-		<script type="text/javascript" src="dep/st/libs/stencils-kesiev.js"></script>
-		<script type="text/javascript" src="dep/st/libs/stencils-sandbox.js"></script>		
-		<script type="text/javascript" src="dep/st/libs/stencils-cw.js"></script>
-		<script type="text/javascript" src="dep/st/libs/stencils-lw.js"></script>		
-		<script>
-			function onComicgeneratorConfigure() {
-				// You can change the comicbrowser and comicgenerator configuration here before showing your comic, so you
-				// can set the series ID and, eventually, the "stripthis" engine root path, like this.
-				//
-				// comicbrowser._settings.server.url="path/to/server.php?seriesid=<your comic id>";
-				comicgenerator._settings.placeholders.server="dep/st/";
-			}
-		</script>
-	</body>
+	<!-- reveal! -->
+	<script src="js/reveal.js"></script>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			],
+			progress: true,
+			autoslide: 5000,
+			autoslideStoppable: true
+		});
+	</script>
+	<!-- stripthis! -->
+	<script type="text/javascript" src="dep/st/libs/comicbrowser.js"></script>
+	<script type="text/javascript" src="dep/st/libs/comicgenerator.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-kesiev.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-sandbox.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-cw.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-lw.js"></script>
+	<script>
+		function onComicgeneratorConfigure() {
+			// You can change the comicbrowser and comicgenerator configuration here before showing your comic, so you
+			// can set the series ID and, eventually, the "stripthis" engine root path, like this.
+			//
+			// comicbrowser._settings.server.url="path/to/server.php?seriesid=<your comic id>";
+			comicgenerator._settings.placeholders.server = "dep/st/";
+		}
+	</script>
+</body>
+
 </html>

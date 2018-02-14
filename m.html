@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/moon.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Google Fonts Selection - Sundar -->
+	<link href="https://fonts.googleapis.com/css?family=Cookie|Josefin+Slab:600|Lobster|Shadows+Into+Light+Two" rel="stylesheet">
+
+	<!-- Emoji Font / Css - Sundar (https://afeld.github.io/emoji-css/) -->
+	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+	<!-- stripthis! -->
+	<link rel="stylesheet" type="text/css" href="dep/st/font/stylesheet.css" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<!-- 
+		Style overrides!!!
+		Why?!: We have to override the box-shadow around images, to prevent borders in the stripthis images (as part of comicstrip integration)! 
+				https://stackoverflow.com/questions/23082660/how-to-style-images-in-reveal-js 
+		// Don't Change ".reveal section img"
+	-->
+	<style>
+		.reveal section img {
+			background: none;
+			border: none;
+			box-shadow: none;
+		}
+
+		.reveal section h3 {
+			font-family: "Lobster", cursive;
+		}
+
+		.reveal section h6 {
+			font-family: 'Shadows Into Light Two', cursive;
+			font-size: '.02em';
+		}
+
+		.reveal section p {
+			font-family: 'Shadows Into Light Two', cursive;
+			font-size: '.02em';
+		}
+
+		.reveal section li {
+			font-family: 'Shadows Into Light Two', cursive;
+			font-size: '.02em';
+			margin-bottom: 25px;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			width: auto;
+		}
+	</style>
+	<div class="reveal">
+		<div class="slides">
+			<!-- 001 Welcome -->
+			<section>
+				<h1>Maveric Systems</h1>
+				<h6>Value Proposition to champion
+					<br>the Engineering &amp; Technology Services Competency</h6>
+				<br>
+				<h6>
+					<small>SivaramaSundar
+						<br>14.02.2018</small>
+				</h6>
+			</section>
+			<!-- 002. Vision -->
+			<section>
+				<h2>Vision</h2>
+				<section>
+					<p>
+						To build a Coveted Engineering Practice
+						<br>positioning maveric as the most trusted
+						<br>Banking Technology &amp; Engineering Partner
+						<br>in Banking Digital Transformation and Modernization
+					</p>
+				</section>
+			</section>
+			<!-- 003. Mission -->
+			<section>
+				<h2>Mission</h2>
+				<section>
+					<h6>1. Build an Engineering Practice
+						<br>driven by Quality, Reliability, Security &amp; Innovation</h6>
+				</section>
+				<section>
+					<h6>2. Build a self healing, self managing,
+						<br>value driven engineering team</h6>
+				</section>
+				<section>
+					<h6>3. Become the pioneer; Be @ forefront of modern banking technologies</h6>
+				</section>
+				<section>
+					<h6>4. Continuous Innovation &amp; Simplified Banking</h6>
+				</section>
+			</section>
+			<!-- 004. How? -->
+			<section>
+				<h6>1. Build an Engineering Practice
+					<br>driven by Quality, Reliability, Security &amp; Innovation</h6>
+				<hr>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build a strong architecture &amp; design orientation, an engineering mindset with focus on Security &amp; Reliability
+							by Up-Skilling on TDD (Test Driven Development) &amp; BDD (Behavior Driven Development) and running a Dedicated Design
+							Thinking Program with special emphasis on NFRs, Security &amp; Reliability</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Adopt best in class engineering standards - following design principles &amp; patterns, covering different technology
+							platforms (Java, .Net, OSS)</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build dashboards &amp; automated mechanisms to measure code quality, security compliance &amp; ensure compliance to
+							engineering standards
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Introduce evolutionary design rather than up-front monolithic design</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build expertise in multiple Agile Frameworks, tailored for banks &amp; their cultural needs, by intensive hands on
+							training for 1 month, with real life case studies and design problems</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build a highly automated, nimble, agile engg. culture, driven by CICD &amp; DevOPS</li>
+						<li>Inculcate a 'DevOPS first' thought process within teams</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li> Seamless Push to Production </li>
+						<li> Code Changes -> Commit -> Trigger Build -> Deploy in Staging, Performance Testing Environments -> Run Functional &
+							Non-Functional Tests -> Deploy to Production </li>
+						<li>Demonstrate the need for DevOPS &amp; Engineering mindset and how it can help win more customers</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h6>2. Build a self healing, self managing, value driven engineering team</h6>
+				<hr>
+				<!-- <br>with the right talent, nurture, recognition and retention</h6> -->
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build the engineering team leveraging a shared resource pool - 50% dedicated (picked both internally &amp; externally),
+							50% from verticals (internal)</li>
+						<li>Build experts who will build more experts via mentor groups</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Pick Young, Sharp, Committed Talent &amp; driven by values
+							<br>80% &lt; 5 years; 20% &lt; 10 years of experience</li>
+						<li>Mitigate risk by maintaining a 20% of contingency talent within verticals</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Build &amp; Execute a Personal Progression &amp; Evolution program covering technical &amp; leadership aspects</li>
+						<li>Build an In-house, community driven Knowledge Management &amp; Sharing platform</li>
+						<li>Build focused learning groups for Continuous Up-Skilling and diversification in tools & technologies</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Create Lateral Learning Avenues across domains &amp; specializations, with real time business case studies, experience
+							sharing &amp; programs run by internal &amp; external speakers</li>
+						<li>Create simulations of real problems &amp; case studies, and have people solve it as a growth avenue</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Nurture Thought Leadership by guiding to author &amp; contribute to Articles, Newsletters, Videos, Magazines, Podcasts,
+							Webinars
+						</li>
+						<li>Share Knowledge, industry best practices with customers as a value added gesture</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h6>3. Become the pioneer, Be @ forefront of modern banking technologies</h6>
+				<hr>
+				<section>
+					<p>Establish "Maveric Labs" to explore new avenues and new service offerings
+					</p>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>Explore
+							<b>Secure Cloud Computing</b> opportunities in Banking - Micro-Services, AI &amp; Analytics</li>
+						<li>
+							<b>Opensource Banking</b> - Create new and/or Contribute to opensource banking projects</li>
+						<li>
+							<b>Banking Marketplaces</b> - Integrate banks with banking marketplaces; Help banks build their own marketplaces
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>
+							<b>Fintech</b> - Integration &amp; Services around fintech products ex: fidor, bancorp, wirecard, matchmove
+						</li>
+						<li>
+							<b>IoT in banking</b> - integrating core banking services via intelligent devices - amazon echo, google home
+						</li>
+						<li>
+							<b>Big Data &amp; Analytics</b> - Data Sharing across banks Build data lakes for mining &amp; serving aggregated data
+							on demand
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>
+							<b>Machine Learning &amp; Deep Learning</b> - Build a platform to analyze customer consumption &amp; spend patterns to
+							predict their future banking patterns using machine learning algorithms applied on collated and curated data from
+							varied sources, by applying right algorithms, in the right sequence
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>
+							<b>AI &amp; Bots in Banking</b> Build capability to address automated customer support &amp; Self banking needs, with
+							minimal human intervention
+						</li>
+						<li>
+							<b>Enable BaaS</b> - Help banks build capabilities to expose and support BaaS (Banks as a Service) on Premises &amp;
+							on Cloud
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>
+							<b>BlockChain &amp; DLTs (Distributed Ledgers)</b> - Integrate core banking with blockchain technologies to secure and
+							tamper proof the documentation across the valuechain
+						</li>
+						<li>Build a high performance blockchain offering without compromising on reliability and integrity
+						</li>
+					</ul>
+				</section>
+				<section>
+					<ul style="list-style-type:circle">
+						<li>
+							<b>Security in FinTech &amp; Banking Integration</b> - Build a Security Evaluation, Assessment framework using OSS tools
+							&amp; build solution offerings around it
+						</li>
+						<li>
+							<b>Regulatory Opportunities</b> - Build a framework to optimize &amp; automate repetitive regulatory tasks across different
+							stacks;
+						</li>
+					</ul>
+				</section>
+				<section>
+					<p>
+						<b>Omni-Channel Banking &amp; Personalization</b> - Build Omni-Channel experience (web, mobile) leveraging the APIs across
+						channels
+					</p>
+				</section>
+			</section>
+			<section>
+				<h6>4. Continuous Innovation &amp; Simplified Banking</h6>
+				<hr>
+				<section>
+					<p>Business driven solutions with an Outside In culture
+						<br>(Putting customer at the center of your business)</p>
+				</section>
+				<section>
+					<p>
+						Build a Strategic team to think about future banking trends and solutions, creating a pipeline for the labs &amp; future
+						business lines
+					</p>
+				</section>
+				<section>
+					<p>
+						Build an Open Data Banking API Platform / Ecosystem (ex: In compliance to openbanking.org) with core banking APIs and allied
+						services like reporting, audits, analytics, notifications etc., On-Prem &amp; On Cloud, And with value added services
+						+ end-to-end consulting &amp; support offerings;
+					</p>
+				</section>
+				<section>
+					<p>
+						Build Customized offerings of the platform for individual banks, resulting in an immediate revenue generating product &amp;
+						service offering from maveric
+					</p>
+				</section>
+				<section>
+					<p>
+						Ex: Enable banks to meet PSD2 needs &amp; grow beyond the compliance requirements
+					</p>
+				</section>
+				<section>
+					<ul>
+						<li>Expose information services required by AISPs</li>
+						<li>Expose payment services required by PISPs</li>
+						<li>Expose account management capabilities at the ASPSP end (banks)</li>
+						<li>Build around existing banking products and collated data from diverse backoffice systems</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<!-- 005. Thank you slide -->
+				<section data-background-image=images/journey-of-a-thousand-miles.png data-background-size="75%">
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<!-- jquery &amp; other pre-reqisites ! -->
+	<script src="lib/js/head.min.js"></script>
+	<script src="lib/js/jquery.js"></script>
+
+	<!-- reveal! -->
+	<script src="js/reveal.js"></script>
+	<script>
+		// More info about config &amp; dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			],
+			progress: true,
+			autoslide: 5000,
+			autoslideStoppable: true
+		});
+	</script>
+	<!-- stripthis! -->
+	<script type="text/javascript" src="dep/st/libs/comicbrowser.js"></script>
+	<script type="text/javascript" src="dep/st/libs/comicgenerator.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-kesiev.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-sandbox.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-cw.js"></script>
+	<script type="text/javascript" src="dep/st/libs/stencils-lw.js"></script>
+	<script>
+		function onComicgeneratorConfigure() {
+			// You can change the comicbrowser and comicgenerator configuration here before showing your comic, so you
+			// can set the series ID and, eventually, the "stripthis" engine root path, like this.
+			//
+			// comicbrowser._settings.server.url="path/to/server.php?seriesid=<your comic id>";
+			comicgenerator._settings.placeholders.server = "dep/st/";
+		}
+	</script>
+</body>
+
+</html>

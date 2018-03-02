@@ -63,18 +63,36 @@
 		<div class="slides">
 			<!-- 001 Welcome -->
 			<section>
-				<h2><a href="https://github.com/sundarsrd/ardeim">Ardeim</a></h2>
+				<h2>
+					<a href="https://github.com/sundarsrd/ardeim">Ardeim</a>
+				</h2>
 				<hr>
 				<h3>(Ar)chitecture, (De)sign &amp; (Im)plementation</h3>
 				<hr>
 				<h6>
 					<small style="color:blueviolet">Copyright:</small>
-					<small style="color:greenyellow"><a href="mailto:sivaramasundar@gmail.com">SivaramaSundar (sivaramasundar@gmail.com)</a>, <a href="mailto:karthik.kalkur@tesco.com">Karthik Kalkur (Karthik.Kalkur@tesco.com)</a></small>
-					<br><small style="color:blueviolet">Thanks to:</small>
-					<small style="color:greenyellow"><a href="mailto:Rashmi.Subbanna@tesco.com">Rashmi Subbanna (Rashmi.Subbanna@tesco.com)</a></small>
-					<br><small style="color:blueviolet">Credits:</small>
-					<small style="color:greenyellow"><a href="https://revealjs.com/#/">reveal.js</a>, <a href="http://www.kesiev.com/stripthis/">stripthis (kesiev)</a></small>
+					<small style="color:greenyellow">
+						<a href="mailto:sivaramasundar@gmail.com">SivaramaSundar (sivaramasundar@gmail.com)</a>,
+						<a href="mailto:karthik.kalkur@tesco.com">Karthik Kalkur (Karthik.Kalkur@tesco.com)</a>
+					</small>
+					<br>
+					<small style="color:blueviolet">Thanks to:</small>
+					<small style="color:greenyellow">
+						<a href="mailto:Rashmi.Subbanna@tesco.com">Rashmi Subbanna (Rashmi.Subbanna@tesco.com)</a>
+					</small>
+					<br>
+					<small style="color:blueviolet">Credits:</small>
+					<small style="color:greenyellow">
+						<a href="https://revealjs.com/#/">reveal.js</a>,
+						<a href="http://www.kesiev.com/stripthis/">stripthis (kesiev)</a>
+					</small>
 				</h6>
+			</section>
+			<section>
+				<h6 style="color: greenyellow">
+					- Lay of the Land -
+				</h6>
+				<img height="100%" width="100%" src="images/toc.png" alt="TOC">
 			</section>
 			<section>
 				<h4>Heads UP!</h4>
@@ -189,7 +207,7 @@
 
 						</textarea>
 				</section>
-				<section>
+				<section id="sl-ctx-samebox">
 					<textarea class="comicbrowser-render">
 							"... Contd : Build a PDP Web UI powered by public facing Product, Price Services" black 
 							a new office panel
@@ -205,7 +223,7 @@
 							lara same
 							kesiev same replies "we'll need a web application; a service & a data store"
 							lara same replies "plus a batch processor + published events???"            
-							lara sadic smile says "and all in the same server! Easy Peasy!"            
+							kesiev same sadic smile replies "**and all in the same box! Easy Peasy!"            
 
 						</textarea>
 				</section>
@@ -254,7 +272,7 @@
 			</section>
 			<!-- 003. Technology Selection -->
 			<section>
-				<h4>What next!?</h4>
+				<h4>Next Steps</h4>
 				<hr>
 				<section>
 					<textarea class="comicbrowser-render">
@@ -307,16 +325,16 @@
 						a new office panel
 						narrator says whispering "Technology & NFRs?"
 						kesiev with glasses using mac replies ".net - it has enterprise support, productivity & excellent tooling"
-						lara looking left says "Java - it's cross platform; fast, agile & portable"
+						lara looking left with mug says "Java - it's cross platform; fast, agile & portable"
 						kesiev joined hands looking left says "MEAN - lightweight, fast development"
 
 						a new panic panel
-						peter replies "Choose the technologies for a purpose!"
+						peter looking left using tablet replies "Choose the technologies for a purpose!"
 						peter says "Quantify, Challenge & Measure Objectively!"
 
 						a new office panel
 						kesiev same looking up says "What'd be the pro's & con's? Let's pick the best tech. stack suited to our needs."
-						lara looking up looking left thumb up
+						lara looking left winking thumb up says "Cool!"
 
 						a new panic panel
 						peter looking left using tablet replies "Good grasp of at least one major programming language"
@@ -330,13 +348,15 @@
 
 						a new office panel
 						narrator says whispering "Destination?"
-						kesiev with glasses using mac says "Do we have a Roadmap?!"
-						lara same replies "Let's prioritize & align deliveries with business"
-						anna using phone same says "and build working, demonstrable software - Incrementally!"
-						bianca looking left looking up thumb up says whispering loudly "Wonderful! That Sounds `Agile`!"
+						kesiev with glasses using mac says "Do we have a roadmap?!"
+						lara looking left with mug replies "Let's prioritize & align deliveries with business"
+						anna looking left using phone same says "...and build working, demonstrable software - Incrementally!"
 
 						a new panic panel
-						peter replies "Have a humble start. Everything evolves!"
+						bianca looking left looking up thumb up says whispering "Wonderful! That Sounds so very `Agile`!"
+
+						a new panic panel
+						peter using tablet replies "Have a humble start. Everything evolves!"
 						peter using tablet says "That includes Architecture & Design!"
 					</textarea>
 					<h6 style="color:greenyellow">
@@ -444,7 +464,7 @@ Engineering
 					</pre>
 				</section>
 				<section>
-					<img height="20%" width="20%" src="images/tddsteps.jpg" />
+					<img height="30%" width="30%" src="images/tddsteps.png" />
 				</section>
 				<section>
 					<textarea class="comicbrowser-render">
@@ -456,13 +476,13 @@ Engineering
 						peter same says "Thanks to Eric Evans & Vaugn Vernon"
 					</textarea>
 					<pre>
-	<a href="http://www.cqrs.nu/">CQRS & Domain Driven Design</a>
-	<a href="https://github.com/heynickc/awesome-ddd">Awesome DDD - Nick Chamberlain</a>
-	<a href="http://dddcommunity.org/examples2">DDD Example</a>
-	<a href="http://dddcommunity.org/books/">DDD Books</a>
-	<a href="http://domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf">Domain Driven Design - Reference</a>
-	<a href="https://vaughnvernon.co/?p=942">The Ideal Domain-Driven Design Aggregate Store?</a>
-	<a href="https://www.infoq.com/presentations/ddd-microservices-2016">DDD & MicroServices</a>
+<a href="http://www.cqrs.nu/">CQRS & Domain Driven Design</a>
+<a href="https://github.com/heynickc/awesome-ddd">Awesome DDD - Nick Chamberlain</a>
+<a href="http://dddcommunity.org/examples2">DDD Example</a>
+<a href="http://dddcommunity.org/books/">DDD Books</a>
+<a href="http://domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf">Domain Driven Design - Reference</a>
+<a href="https://vaughnvernon.co/?p=942">The Ideal Domain-Driven Design Aggregate Store?</a>
+<a href="https://www.infoq.com/presentations/ddd-microservices-2016">DDD & MicroServices</a>
 						</pre>
 				</section>
 			</section>
@@ -472,28 +492,31 @@ Engineering
 				<hr>
 				<section>
 					<textarea class="comicbrowser-render">
-							"All in One Box - Not a very good idea!" black
+						"All in One Box - Not a very good idea!" black
 
-							a new office panel
-							narrator says "the divine voice booms..."            
-							peter evil smile looking right replies "Have you thought about the Advantages & Disadvantages?"
+						a new office panel
+						narrator says "the divine voice booms..."            
+						peter evil smile looking right replies "Have you thought about the Advantages & Disadvantages?"
 
-							a new very large office panel
-							narrator says "Good for POC/Dev., Not fit for Production"
-							kesiev with glasses looking right using mac to lara says "Low Performance - Resource Contention & Exhaustion"
-							lara looking left with mug replies "SPOF - Failure in one system affects all others"
-							lara same replies "Cannot Scale"
-							kesiev same says "Maintenance & Troubleshooting becomes a nightmare"
+						a new very large office panel
+						narrator says "Good for POC/Dev., Not fit for Production"
+						kesiev with glasses looking right using mac to lara says "Low Performance - Resource Contention & Exhaustion"
+						lara looking left with mug replies "SPOF - Failure in one system affects all others"
+						lara same replies "Cannot Scale"
+						kesiev same says "Maintenance & Troubleshooting becomes a nightmare"
 
-							a new panic panel
-							peter same using tablet looking left says "Think about the NFRs! It'll change the whole landscape"
+						a new panic panel
+						peter same using tablet looking left says "Think about the NFRs! It'll change the whole landscape"
 
-						</textarea>
-					<pre><a href="http://www.softwarearchitectures.com/qa.html">NFRs / QA (Quality Attributes)</a></pre>
+					</textarea>
+					<pre>
+<small><a href="#/sl-ctx-samebox">*** Remember All in One Box? (Slide 4.5)</a></small>
+<a href="http://www.softwarearchitectures.com/qa.html">NFRs / QA (Quality Attributes)</a>
+</pre>
 				</section>
 				<section>
 					<textarea class="comicbrowser-render">
-							"Devs Thinking..." black
+							"Dev's Thinking..." black
 							a new office panel
 							kesiev with glasses looking up using mac replies "OMG! Are we missing something?"
 							kesiev same replies "Architecture & Design?"
@@ -516,9 +539,9 @@ Engineering
 					<textarea class="comicbrowser-render">
 						"Architectural Styles/Patterns & Selection" black
 						a new city panic panel
-						lara looking right says "Layered"
+						lara with mug looking right says "Layered"
 						a new hypnotic panel
-						kesiev with glasses looking left says "Hexagonal"
+						kesiev using mac with glasses looking left says "Hexagonal"
 						a new confusion panel
 						lara same says "CQRS"
 						a new despair panel
@@ -610,6 +633,28 @@ Engineering
 					</pre>
 				</section>
 				<section>
+					MicroServices Architecture
+					<br>
+					<img height="60%" width="60%" src="images/Architecture/microservices.png" alt="Microservices Architecture">
+					<h6 style="color:greenyellow">
+						<small>
+							- MicroServices are thin vertical slices of Business Functions
+							<br> Independently Deployable and Scalable -
+						</small>
+					</h6>
+				</section>
+				<section>
+					<pre>
+<a href="https://martinfowler.com/microservices/">MicroServices Resource Guide</a>
+<a href="https://martinfowler.com/articles/microservices.html">MicroServices (as defined by Martin Fowler)</a>
+<a href="https://samnewman.io/talks/">Sam Newman on MicroServices!</a>
+<a href="https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices">MicroServices Architecture</a>
+<a href="https://dzone.com/articles/microservices-architecture-what-when-how">MicroServices - What, When & How</a> 
+<a href="http://microservices.io/patterns/microservices.html">Chris Richardson on MicroServices</a>
+<a href="https://www.nginx.com/blog/introduction-to-microservices/">An Introduction to MicroServices from NGINX<br>(7 parts article series)</a>
+					</pre>
+				</section>
+				<section>
 					<textarea class="comicbrowser-render">
 						"N-Tier Architecture & Layers" black
 
@@ -618,13 +663,13 @@ Engineering
 						
 						a new office panel
 						kesiev same while using mac looking down, replies whispering "and how to split the layers??"
-						lara looking left says "Simple. Web, App, DB Layers."
+						lara with mug looking left says "Simple. Web, App, DB Layers."
 						lara replies "The web servers are powered by microservices"
 						lara replies "and microservices read/write into the Datastore"
 
 						a new office panel
-						kesiev using pc looking right glasses with mug says "Ok! let's add more as needed"
-						lara looking left replies smiling with thumb up "Cool! let's go Agile! ;)"
+						kesiev using mac looking right glasses says "Ok! let's add more as needed"
+						lara looking left smiling with thumb up replies "Cool! let's go Agile! ;)"
 
 						a new very large panic panel
 						peter looking left using tablet says "Design & Archite cture shall evolve!"
@@ -646,7 +691,7 @@ Engineering
 						a new very large office panel
 						narrator says "(functional) PDP - to collate product, price & stock data"
 						kesiev same says "wonder, how we'd get the data and render the page?"
-						lara looking left replies "Use MVC (Server-Side) / MVVM (Client-Side)"
+						lara looking left with mug replies "Use MVC (Server-Side) / MVVM (Client-Side)"
 						lara same says "And a template engine to render the views!"
 
 						a new panic panel
@@ -680,9 +725,9 @@ Engineering
 
 						a new very large office panel
 						narrator says "... and a laundry list of (non-functional) components"
-						kesiev with mug same in hand
+						kesiev with glasses using mac looking right
 						kesiev same says "Error & Exception handling?"
-						lara same says "Logging & Tracing..."
+						lara looking left with mug same says "Logging & Tracing..."
 						lara same says "Profiling & Measuring..."
 
 						a new very large office panel
@@ -735,10 +780,10 @@ Engineering
 						"Choose the Technologies, Frameworks & Tools for DB Layer" black 
 
 						a new office panel
-						lara looking up says "RDBMS vs NoSQL vs Columunar DB's'?"
+						lara looking up with mug says "RDBMS vs NoSQL vs Columunar DB's'?"
 						lara same says "Choose appropriate type of database for specific usecases"
 
-						a new blank panel
+						a new panic panel
 						peter looking left using tablet replies "CAP Theorem is crucial in selecting the DB's"
 					</textarea>
 				</section>
@@ -749,6 +794,37 @@ Engineering
 					<h6 style="color:greenyellow">
 						<small>- Choosing between Availability, Consistency & Partition Tolerance -</small>
 					</h6>
+				</section>
+				<section>
+					<img height="33%" width="33%" src="images/Architecture/logical.view.png" alt="Logical View">
+					<img height="51%" width="51%" src="images/Architecture/logical.view.connectivity.png" alt="Logical View Connectivity">
+					<br>
+					<h6 style="color:greenyellow">
+						<small>- Logical, Logical Connectivity Views -</small>
+					</h6>
+					<pre><a href="www.yworks.com/products/yed">yED from yWorks</a></pre>
+				</section>
+				<section>
+					<img height="33%" width="33%" src="images/Architecture/physical.view.png" alt="Physical View">
+					<br>
+					<h6 style="color:greenyellow">
+						<small>- Physical View -</small>
+					</h6>
+				</section>
+				<section>
+					<img height="30%" width="30%" src="images/Architecture/class.diagram.png" alt="Simple Class Diagram">
+					<img height="30%" width="30%" src="images/Architecture/class.diagram.2.png" alt="Class Diagram Extended">
+					<img height="30%" width="30%" src="images/Architecture/sequence.diagram.png" alt="Sample Sequence Diagram">
+					<br>
+					<h6 style="color:greenyellow">
+						<small>- Class & Sequence Diagrams -</small>
+					</h6>
+					<pre>
+<a href="plantuml.sourceforge.net/">PlantUML for Declarative diagrams</a>
+<a href="https://dzone.com/refcardz/getting-started-uml">UML Simplified</a>
+<a href="http://argouml.tigris.org/">ArgoUML</a>
+<a href="http://www.umlet.com/">UMLet</a>
+</pre>
 				</section>
 			</section>
 			<!-- 005. Engineering -->
@@ -761,8 +837,8 @@ Engineering
 
 						a new office panel
 						narrator says "Dev's think..."
-						kesiev looking right with glasses using mac
-						lara looking left with mug
+						kesiev looking right with glasses using mac says to self "...?"
+						lara looking left with mug replies to self "..!"
 
 						a new office panel
 						kesiev same says to self "KISS, YAGNI, SOLID"
@@ -771,9 +847,9 @@ Engineering
 						kesiev hands joined replies to self "Imperative vs Functional?"
 
 						a new office panel
+						kesiev same replies to self "Sync. vs Async??"
 						lara same says to self "code reviews? static analysis...!!"
 						lara same says to self "coverage & profiling..."
-						kesiev same replies to self "Sync. vs Async??"
 						
 					</textarea>
 					<pre>
@@ -791,7 +867,7 @@ Engineering
 
 						a new office panel
 						kesiev with glasses using mac looking right says "Sync. vs Async. Programming?"
-						lara looking left replies "Sync is Blocking (linear execution) & apt. for low/very low volume systems"
+						lara looking left with mug replies "Sync is Blocking (linear execution) & apt. for low/very low volume systems"
 						lara same says "Async. is non blocking (queues/threads/event-loop)"
 						lara same says "High volume systems with short response time SLAs need Async."
 
@@ -872,20 +948,20 @@ Engineering
 							a new very large office panel
 							narrator says "In the beginning there were ..."
 							kesiev with glasses looking up using mac says "High Cohesion"
-							lara looking left using mac replies "and Low Coupling"
+							lara looking left with mug replies "and Low Coupling"
 	
 							a new very large office panel
 							narrator says "and then came SOLID"
 							kesiev same says "SRP - Single Responsibility Principle"
 							kesiev same replies "OCP - Open Closed Principle"
-							lara looking left replies "ISP - Interface Segregation Principle"
+							lara same replies "ISP - Interface Segregation Principle"
 							kesiev same says "LSP - Liskhov Substitution Principle"
-							lara looking left says "IOC/DI - Inversion of Control"
+							lara same says "IOC/DI - Inversion of Control"
 							
 							a new office panel
 							narrator says "...  YAGNI, DRY, SLAP"
 							kesiev same says "YAGNI - You Ain't Gonna Need It'"
-							lara looking left replies "DRY - Don't Repeat Yourself'"
+							lara same replies "DRY - Don't Repeat Yourself'"
 	
 							a new panic panel
 							peter looking left using tablet replies "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live"
@@ -944,13 +1020,13 @@ Engineering
 						a new office panel
 						narrator says "build, test, deploy - and automate 'em all'"
 						kesiev using mac with glasses looking right to lara says "why build automation?"
-						lara looking left replies "faster time to market"
-						lara looking left replies "deliver changes to production safely and quickly in a sustainable way"
+						lara looking left with mug replies "faster time to market"
+						lara same replies "deliver changes to production safely and quickly in a sustainable way"
 
 						a new very large office panel
 						narrator says "Tools of the trade"
 						kesiev same says "GIT, Jenkins, Chef, Ansible"
-						lara looking left says "Trigger jenkinks builds on checkin to GIT"
+						lara same says "Trigger jenkinks builds on checkin to GIT"
 						lara same says "run unit, acceptance tests after sucessful build from jenkins"
 						lara same replies "and deploy to dev./test environment"
 
@@ -968,10 +1044,10 @@ Engineering
 						"Building the App & Service - Components, ensuring quality" black 
 
 						a new very large office panel
-						kesiev with glasses looking right replies "Building quality grounds up"
+						kesiev with glasses using mac looking right replies "Building quality grounds up"
 						kesiev same says "BDD & Acceptance Testing"
 						kesiev same says "Static Analysis Tools, Refactoring"
-						lara looking left replies "FxCop, SonarQube etc."
+						lara looking left with mug replies "FxCop, SonarQube etc."
 						
 						a new very large office panel
 						kesiev same says "TDD & Integration Testing"
@@ -990,12 +1066,12 @@ Engineering
 					<textarea class="comicbrowser-render">
 						"Why improve performance?" black 
 
-						a new panel
+						a new office panel
 						kesiev with glasses using mac looking right to lara says "Better user experience"
 						lara looking left with mug says "right, without which the functionality is of not much use"
 						lara same says "Imagine a crawling system!"
 
-						a new very large panel
+						a new very large office panel
 						kesiev same says "There are multiple ways & approaches of improving performance"
 						lara same replies "and both at high, lower levels of architecture & design"
 						lara same says "starting from capacilty planning, load testing & deployment planning"
@@ -1114,7 +1190,7 @@ Engineering
 					</textarea>
 				</section>
 				<section>
-					<img height="60%" width="60%" src="images/big.o.layman-terms.png" alt="MacDown logo">
+					<img height="70%" width="70%" src="images/big.o.layman-terms.png" alt="MacDown logo">
 					<br>
 					<a href="https://www.manning.com/books/grokking-algorithms">Grokking Algorithms!</a>
 				</section>
@@ -1167,7 +1243,7 @@ Engineering
 						lara same replies "Use server farms/clusters with Load Balancers"
 						lara same replies "Scale Up to optimize performance"
 
-						a new office panel
+						a new panic panel
 						peter looking left using tablet replies "A Combination of DNS and CDN can help scale externally"
 
 					</textarea>
@@ -1240,7 +1316,7 @@ Engineering
 						lara same replies "Message Queues & Persistence"
 						
 						a new very large panic panel
-						kesiev same says "Nginx, ARR, API Gateways"
+						peter using tablet looking down says "Make use of right tech. - Nginx, ARR, API Gateways"
 
 					</textarea>
 				</section>
@@ -1419,7 +1495,7 @@ Engineering
 						<br>superbly organized collection of resources for system design -</h6>
 				</section>
 				<section>
-					<h6>Sources every engineer & architect should follow!</h6>
+					<h6 style="color:greenyellow">Sources every engineer & architect should follow!</h6>
 					<pre>
 <a href="http://infoq.com/">InfoQ Tech. Hub</a>
 <a href="http://highscalability.com/">High Scalability - Real Time Architectures</a>
@@ -1429,7 +1505,7 @@ Engineering
 					</pre>
 				</section>
 				<section>
-					<h6>There's much much more, and these links give you good starting points</h6>
+					<h6 style="color:greenyellow">There's much much more, and these links give you good starting points</h6>
 					<pre>
 <a href="https://netflix.github.io/">NetFlix OSS</a>
 <a href="http://microservices.io/">Everything about MicroServices</a>
@@ -1448,9 +1524,9 @@ Engineering
 				<!-- 005. Thank you slide -->
 				<section>
 					<textarea class="comicbrowser-render">
-						"!"
+						"!" 4-koma
 						
-						a new very large hypnotic panel
+						a new very large office panel
 						narrator says "That's all for now folks!"
 
 						bianca with blocknotes looking up replies to self "Hope you had fun!"
@@ -1459,16 +1535,17 @@ Engineering
 						anna  using phone looking up says to self "Go on & explore the links & poniters!"
 						peter using tablet looking up says to self "and Don't you forget to apply the learnings!"
 						
-						a new hypnotic panel
+						a new very large hypnotic panel
 						peter using tablet looking up replies to self "Do share your thoughts & comments with us!"
+						somebody says whispering to self "--> Sivarama sundar @gmail.com! <--"
 						bianca same says to self " We are on a prepetual learning mission! ;)"
-
-						a new hypnotic panel
-						somebody replies loudly to self "Thank YOU!"
+						
+						lara with glasses looking up with mug sadic smile says loudly to self "Thank YOU!"
+						lara same replies whispering to self "Spread the Goodness!"
 					</textarea>
 				</section>
-				<section data-background-image=images/journey-of-a-thousand-miles.png data-background-size="75%">
-				</section>
+			</section>
+			<section data-background-image=images/journey-of-a-thousand-miles.png data-background-size="75%">
 			</section>
 		</div>
 	</div>
@@ -1491,9 +1568,12 @@ Engineering
 				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
 			],
 			progress: true,
-			autoslide: 5000,
-			autoslideStoppable: true
+			autoslide: 2000,
+			autoslideStoppable: true,
+			keyboard: true,
+			numbers: true
 		});
+		Reveal.configure({ slideNumber: 'h.v' });		
 	</script>
 	<!-- stripthis! -->
 	<script type="text/javascript" src="dep/st/libs/comicbrowser.js"></script>

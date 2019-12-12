@@ -18,7 +18,7 @@ rem # reveal.ex2pdf.bat %cd% %home%:%home% index.html
 rem # reveal.ex2pdf.bat %cd% %cd% index.html
 rem # run directly from the docker container
 rem # docker run --rm -t -v %cd%:/slides astefanutti/decktape index.html slides.pdf
-rem # docker run --name revealdt --net=host -v "%cd%:/slides" astefanutti/decktape reveal "http://localhost:5500/git/dell-digital-advantage/" "index.slides"
+rem # docker run --name revealdt --net=host -v "%cd%:/slides" astefanutti/decktape reveal "http://localhost:5500/git/...-digital-advantage/" "index.slides"
 rem # docker run --name revealdt -v "%cd%:/slides" astefanutti/decktape reveal "https://sundarsrd.github.io/ardeim/ardeim.v5.html" "ardeim.v5.pdf"
 
 rem # 20.04.2018 - decktape v 2.7.0 docker image works well - the latest version of the docker image fails in creating the pdf 
